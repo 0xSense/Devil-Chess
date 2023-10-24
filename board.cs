@@ -1,8 +1,6 @@
 using Godot;
 using System;
 
-using Godot;
-
 public partial class DevilChess : Node2D
 {
   // Member variables here, example:

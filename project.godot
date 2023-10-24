@@ -12,8 +12,8 @@ config_version=5
 
 config/name="Devil-Chess"
 run/main_scene="res://board.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://Assets/icon.svg"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/icon="res://Assets/godot.svg"
 
 [display]
 
