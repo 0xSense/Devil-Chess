@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y0qi88wpydug"
-path="res://.godot/imported/Knight.png-2b45a527254c8a9f0312a5cf52a36055.ctex"
+uid="uid://buxtyr5ilxqa4"
+path="res://.godot/imported/board-piece-dark.png-d0c1551ab3f9b11a796bca70e599870a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Knight.png"
-dest_files=["res://.godot/imported/Knight.png-2b45a527254c8a9f0312a5cf52a36055.ctex"]
+source_file="res://Assets/Board/board-piece-dark.png"
+dest_files=["res://.godot/imported/board-piece-dark.png-d0c1551ab3f9b11a796bca70e599870a.ctex"]
 
 [params]
 
