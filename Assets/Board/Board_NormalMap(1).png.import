@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhw8sdql3a4ik"
+uid="uid://b3r24iqx0omxb"
 path.s3tc="res://.godot/imported/Board_NormalMap(1).png-594dcf7e067139c7ad4dd6704ab04b5f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -26,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://Assets/Board_NormalMap(1).png"
+roughness/src_normal="res://Assets/Board/Board_NormalMap(1).png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

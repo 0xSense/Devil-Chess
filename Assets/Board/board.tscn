@@ -1,5 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqkllhmjo8ivi"]
+[gd_scene load_steps=10 format=3 uid="uid://u27wx33sdxkr"]
 
-[ext_resource type="PackedScene" uid="uid://bin6iuoncx0bh" path="res://Assets/Board/Board.glb" id="1_suyx5"]
+[ext_resource type="PackedScene" uid="uid://b06ylqqxyexuj" path="res://Assets/Board/Board.glb" id="1_suyx5"]
+[ext_resource type="Texture2D" uid="uid://b3r24iqx0omxb" path="res://Assets/Board/Board_NormalMap(1).png" id="2_upupu"]
+[ext_resource type="Texture2D" uid="uid://gjw5hesgds05" path="res://Assets/Board/Board_NormalWings.png" id="3_uv63c"]
+[ext_resource type="Texture2D" uid="uid://b8pbsyx2wccrf" path="res://Assets/Board/Board_TCom_Wood_ParquetHerringbone9_New_4K_albedo.png" id="4_kayq2"]
+[ext_resource type="Texture2D" uid="uid://brb1kio8lr0rt" path="res://Assets/Board/Board_BoardNormals.png" id="5_kt80n"]
+[ext_resource type="Texture2D" uid="uid://cvo7ilk67bl2" path="res://Assets/Board/TCom_Wood_ParquetHerringbone9_New_4K_roughness.png" id="6_aag0y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8bkhd"]
+albedo_color = Color(0.156863, 0.145098, 0.258824, 1)
+metallic = 1.0
+roughness = 0.2
+normal_enabled = true
+normal_texture = ExtResource("2_upupu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0v5oi"]
+albedo_color = Color(0.815686, 0.458824, 0.254902, 1)
+metallic = 1.0
+roughness = 0.15
+normal_enabled = true
+normal_texture = ExtResource("3_uv63c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sj10i"]
+albedo_texture = ExtResource("4_kayq2")
+roughness_texture = ExtResource("6_aag0y")
+normal_enabled = true
+normal_texture = ExtResource("5_kt80n")
 
 [node name="Board" instance=ExtResource("1_suyx5")]
+
+[node name="Squares_Exportable" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8bkhd")
+surface_material_override/1 = SubResource("StandardMaterial3D_0v5oi")
+
+[node name="Board_Exportable" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_sj10i")
