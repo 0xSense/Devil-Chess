@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=3 uid="uid://u27wx33sdxkr"]
+
+[ext_resource type="PackedScene" uid="uid://b06ylqqxyexuj" path="res://Assets/Board/Board.glb" id="1_suyx5"]
+[ext_resource type="Texture2D" uid="uid://b3r24iqx0omxb" path="res://Assets/Board/Board_NormalMap(1).png" id="2_upupu"]
+[ext_resource type="Texture2D" uid="uid://gjw5hesgds05" path="res://Assets/Board/Board_NormalWings.png" id="3_uv63c"]
+[ext_resource type="Texture2D" uid="uid://d3m2p4ahqdrpb" path="res://Assets/Board/Board_TCom_Metal_CopperHammered_1K_albedo.png" id="4_mxw5k"]
+[ext_resource type="Material" uid="uid://by1m8jhpy1o7t" path="res://Assets/Board/board_wood.tres" id="4_rnl4o"]
+[ext_resource type="Material" uid="uid://cvofqayo3p7jw" path="res://Assets/Board/board_metal.tres" id="5_psvi6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8bkhd"]
+albedo_color = Color(0.156863, 0.145098, 0.258824, 1)
+metallic = 1.0
+roughness = 0.2
+normal_enabled = true
+normal_texture = ExtResource("2_upupu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0v5oi"]
+albedo_color = Color(0.815686, 0.458824, 0.254902, 1)
+metallic = 1.0
+roughness = 0.15
+normal_enabled = true
+normal_texture = ExtResource("3_uv63c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qipi"]
+albedo_texture = ExtResource("4_mxw5k")
+metallic = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho2gt"]
+albedo_texture = ExtResource("4_mxw5k")
+metallic = 1.0
+
+[node name="Board" instance=ExtResource("1_suyx5")]
+
+[node name="Squares_Exportable" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8bkhd")
+surface_material_override/1 = SubResource("StandardMaterial3D_0v5oi")
+surface_material_override/2 = SubResource("StandardMaterial3D_2qipi")
+
+[node name="SquareBase" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ho2gt")
+
+[node name="Board_Exportable" parent="." index="2"]
+surface_material_override/0 = ExtResource("4_rnl4o")
+surface_material_override/1 = ExtResource("5_psvi6")
