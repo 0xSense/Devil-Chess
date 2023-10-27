@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj4t4hej57o2l"]
+
+[ext_resource type="Texture2D" uid="uid://b3raxg1phnkh" path="res://Assets/Main Menu Assets/Devils Chess Parallax Background.png" id="1_lgqag"]
+[ext_resource type="Script" path="res://background.gd" id="1_qykuh"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_qykuh")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1152, 0)
+
+[node name="DevilsChessParallaxBackground" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(576, 324)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_lgqag")
