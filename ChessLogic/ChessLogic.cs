@@ -120,7 +120,8 @@ public static class ChessLogic
             String line = "";
             for (int x = 0; x < 8; x++)
             {
-                state.board[y,x] = PieceToChar(game.Pos.GetPiece(new Square(y, x)));
+                Square sq = new Square(y, x);
+                state.board[y,x] = PieceToChar(game.Pos.GetPiece(sq));
                 line += state.board[y,x];
             }
             GD.Print(line);
@@ -131,6 +132,24 @@ public static class ChessLogic
 
         GD.Print(state.WhiteCastlingRights);
         GD.Print(state.BlackCastlingRights);
+
+        state.EnPassantSquare = game.Pos.EnPassantSquare.AsInt();
+        if (game.Pos.InCheck)
+        {
+            if (game.Pos.SideToMove == Player.White)
+            {
+                state.WhiteChecked = true;
+                state.BlackChecked = false;
+            }
+            else
+            {
+                state.WhiteChecked = false;
+                state.BlackChecked = true;
+            }
+        }
+
+        state.GameOver = game.Pos.GenerateMoves().Length > 0;
+        state.WhiteToMove = (game.Pos.SideToMove == Player.White);
     }
 
     private static void MakeMove(Move move)
