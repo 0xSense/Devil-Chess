@@ -7,12 +7,22 @@ using Rudzoft.ChessLib.Types;
 
 class OpponentStupid : IOpponent
 {
+    private bool currentTurn;
+
+    public OpponentStupid(bool isWhite)
+    {
+        currentTurn = isWhite;
+    }
+
     public Move GetMove(IPosition pos)
     {
         var moveList = pos.GenerateMoves();
 
-        GD.Print(moveList.Count());
-
         return moveList[(new Random()).Next(0, moveList.Length)];
+    }
+
+    public bool IsTurn()
+    {
+        return currentTurn;
     }
 }

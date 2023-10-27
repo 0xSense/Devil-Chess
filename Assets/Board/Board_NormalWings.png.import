@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gjw5hesgds05"
-path.s3tc="res://.godot/imported/Board_NormalWings.png-6c793b31e144f996330e39e86d33cbbf.s3tc.ctex"
+path.bptc="res://.godot/imported/Board_NormalWings.png-6c793b31e144f996330e39e86d33cbbf.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -13,12 +13,12 @@ generator_parameters={}
 [deps]
 
 source_file="res://Assets/Board/Board_NormalWings.png"
-dest_files=["res://.godot/imported/Board_NormalWings.png-6c793b31e144f996330e39e86d33cbbf.s3tc.ctex"]
+dest_files=["res://.godot/imported/Board_NormalWings.png-6c793b31e144f996330e39e86d33cbbf.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=1
