@@ -4,8 +4,43 @@ using Rudzoft.ChessLib.Factories;
 using Rudzoft.ChessLib.MoveGeneration;
 using Rudzoft.ChessLib.Types;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
+using System.Threading;
+
+/*
+
+Quick overview of the code you need to worry about as a gameplay programmer:
+
+GameState - struct representing the state of the chess game including piece positions;
+SimpleMove - struct representing a single move (returned by ChessLogic.GetLegalMoves())
+ChessLogic - Static class which contains all methods you may need to call:
+    ChessLogic.ReverseColors() - Switches who is playing white and who is playing black (human defaults to white);
+    ChessLogic.GetBoardState() -> GameState - Returns current state of the board as GameState instance;
+    ChessLogic.SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow) - Call this to tell my code when the player has moved a piece in the game world. This function will only apply the move if it is legal and will return false otherwise.
+    ChessLogic.GetLegalMoves() -> List<SimpleMove> - Returns all legal moves in current position. Useful for highlighting legal moves for player.
+    ChessLogic.NewGame(bool humanIsWhite) - Starts new game. Call this before any other functions but *after* registering a function with the AIMoveFinished event.
+    ChessLogic.AIMoveFinished - C# event which is invoked when the AI makes a move. Assign at least one callback before calling any other ChessLogic method.
+*/
+
+// Simple representation of a move based on to and from squares
+public struct SimpleMove
+{
+    int fromCol;
+    int fromRow;
+    int toCol;
+    int toRow;
+
+    public SimpleMove(int fCol, int fRow, int tCol, int tRow)
+    {
+        fromCol = fCol;
+        fromRow = fRow;
+        toCol = tCol;
+        toRow = tRow;
+    }
+}
 
 public struct GameState
 {
@@ -56,6 +91,11 @@ public struct GameState
 
 public static class ChessLogic
 {
+    public delegate void AIMoveNotify();
+    public static event AIMoveNotify AIMoveFinished;
+
+    private static IPlayer human;
+    private static IPlayer AI;
 
     const char W_KING = 'K';
     const char W_QUEEN = 'Q';
@@ -75,26 +115,43 @@ public static class ChessLogic
     private static GameState readableState;
 
     private static Game game;
-    static ChessLogic()
+
+    public static void NewGame(bool humanIsWhite)
     {
-        readableState = new GameState();
-        game = (Game)GameFactory.Create("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-        
-        OpponentStupid playerOne = new OpponentStupid(true);
-        OpponentStupid playerTwo = new OpponentStupid(false);                
-
-        Move nextMove;
-
-        for (int i = 0; i < 5; i++)
+        if (AIMoveFinished == null)
         {
-            if (playerOne.IsTurn())
-                nextMove = playerOne.GetMove(game.Pos);
-            else
-                nextMove = playerTwo.GetMove(game.Pos);
+            throw new Exception("ERROR: You must subscribe a function to AIMoveNotify event before starting a new game.");
+        }
+        else
+        {
+            readableState = new GameState();
+            game = (Game)GameFactory.Create("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");        
+        }
 
-            MakeMove(nextMove);
-            GD.Print(i + ": " + nextMove.FromSquare().ToString() + "-" + nextMove.ToSquare().ToString());
-        }        
+        human = new HumanPlayer(humanIsWhite);
+        AI = new OpponentStupid(!humanIsWhite);
+    }
+
+    // By default, the human plays white; this function inverts that.
+    public static void ReverseColors()
+    {
+        human.FlipCol();
+        AI.FlipCol();
+    }
+
+    public static List<SimpleMove> GetLegalMoves()
+    {
+        List<SimpleMove> moves = new();
+
+        foreach (Move m in game.Pos.GenerateMoves())
+        {
+            Square fromSquare = m.FromSquare();
+            Square toSquare = m.ToSquare();
+            
+            moves.Add(new SimpleMove(fromSquare.File.AsInt(), fromSquare.Rank.AsInt(), toSquare.File.AsInt(), toSquare.Rank.AsInt()));
+        }
+
+        return moves;
     }
 
     /**
@@ -103,6 +160,52 @@ public static class ChessLogic
     public static GameState GetBoardState()
     {
         return readableState;
+    }
+
+    // Do not call this function.
+    public static Position GetPos()
+    {
+        return (Position)game.Pos;
+    }
+
+    /*
+    Call this function when the player has moved a piece in the game world to inform my code of it. Takes two ints for the square the piece moves from and two ints for the square the piece moves to (__Col -> x, __Row -> y). This will return false and do nothing if the move is illegal or if it is not the human player's turn.
+    */
+    public static bool SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow)
+    {
+        if (!((HumanPlayer)human).CurrentTurn)
+        {
+            return false;
+        }
+
+        Square from, to;
+        from = new Square(fromRow, fromCol);
+        to = new Square(toRow, toCol);
+        Move move = new Move(from, to);
+
+        MoveList legalMoves = game.Pos.GenerateMoves();
+
+
+        foreach (Move testMove in legalMoves)
+        {
+            if (testMove.Equals(move))
+            {
+                MakeMove(move);
+                ((IOpponent)AI).BeginPonder();
+                return true;
+            }
+        }        
+
+
+        return false;
+    }
+
+    // Do not attempt to call this function from gameplay code.
+    public static void SubmitComputerMove(Move move)
+    {
+        ((HumanPlayer)human).BeginWait();
+        MakeMove(move);
+        AIMoveFinished?.Invoke();
     }
 
     private static char PieceToChar(Piece piece)
@@ -130,8 +233,8 @@ public static class ChessLogic
         state.WhiteCastlingRights = game.Pos.CanCastle(CastleRights.White);
         state.BlackCastlingRights = game.Pos.CanCastle(CastleRights.Black);
 
-        GD.Print(state.WhiteCastlingRights);
-        GD.Print(state.BlackCastlingRights);
+        GD.Print("Can white castle? " + state.WhiteCastlingRights);
+        GD.Print("Can black castle? " + state.BlackCastlingRights);
 
         state.EnPassantSquare = game.Pos.EnPassantSquare.AsInt();
         if (game.Pos.InCheck)
