@@ -15,9 +15,22 @@ func _process(delta):
 
 # Make sure this is sending to the chessboard scene when final build is being made
 func _on_texture_button_pressed():
+	PlayButtonPress.play()
 	get_tree().change_scene_to_file("res://chess_board.tscn")
+	
 
 var music_bus = AudioServer.get_bus_index("Music")
 
 func _on_toggle_music_pressed():
+	MusicTogglePress.play()
 	AudioServer.set_bus_mute(music_bus, not AudioServer.is_bus_mute(music_bus))
+
+
+func _on_option_button_pressed():
+	DifficultyButtonPress.play()
+	
+
+
+func _on_option_button_item_selected(index):
+	DifficultySelected.play()
+	

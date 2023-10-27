@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgavmgtl82fcj"]
+
+[ext_resource type="AudioStream" uid="uid://cbbdvr52hmtpk" path="res://Menu-001.mp3" id="1_bqs5t"]
+
+[node name="DifficultySelected" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_bqs5t")
