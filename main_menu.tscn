@@ -1,0 +1,91 @@
+[gd_scene load_steps=16 format=3 uid="uid://bseenullji7qk"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_8t10k"]
+[ext_resource type="Texture2D" uid="uid://0xa4dil15t2d" path="res://Assets/Main Menu Assets/Play button.png" id="3_an50a"]
+[ext_resource type="Texture2D" uid="uid://drttlsi5etirl" path="res://Assets/Main Menu Assets/Ai Difficulty solo.png" id="3_rmuf3"]
+[ext_resource type="Texture2D" uid="uid://hstsojhcc0j6" path="res://Assets/Main Menu Assets/Blank button.png" id="3_sn4d1"]
+[ext_resource type="Texture2D" uid="uid://dnaagbrbim5qa" path="res://Assets/Main Menu Assets/Play Selected.png" id="4_yn4tf"]
+[ext_resource type="Texture2D" uid="uid://c0xwjoq28477k" path="res://Assets/Main Menu Assets/Music On Button.png" id="5_wnnrf"]
+[ext_resource type="Texture2D" uid="uid://on7t5c333h26" path="res://Assets/Main Menu Assets/Music Off Button.png" id="6_qg8ct"]
+[ext_resource type="AudioStream" uid="uid://c13fo66351v6w" path="res://Assets/Audio Assets/Menu.wav" id="7_q1nhd"]
+[ext_resource type="Texture2D" uid="uid://dr0rgn3ycq5e4" path="res://Assets/Main Menu Assets/Medium solo brown.png" id="10_xdh4m"]
+[ext_resource type="Texture2D" uid="uid://dru101auu1bwq" path="res://Assets/Main Menu Assets/Hard solo yellow.png" id="11_jgesf"]
+[ext_resource type="Texture2D" uid="uid://cc31vcyr3vmuu" path="res://Assets/Main Menu Assets/Devil's advocate solo.png" id="12_ixl8e"]
+[ext_resource type="Script" path="res://OptionButton.gd" id="13_rcvuu"]
+[ext_resource type="Texture2D" uid="uid://1oe5rabbfgfb" path="res://Assets/Main Menu Assets/Music.png" id="14_tif3c"]
+[ext_resource type="PackedScene" uid="uid://bj4t4hej57o2l" path="res://background.tscn" id="15_j60x4"]
+[ext_resource type="Texture2D" uid="uid://e5ct0ltgxsr7" path="res://Assets/Main Menu Assets/Devil’s Chess Title.png" id="15_jxtry"]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_8t10k")
+
+[node name="AiDifficultySolo" type="Sprite2D" parent="."]
+position = Vector2(578, 352.75)
+scale = Vector2(0.794118, 0.664179)
+texture = ExtResource("3_rmuf3")
+
+[node name="BlankButton" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(576, 352)
+scale = Vector2(0.8, 0.65)
+texture = ExtResource("3_sn4d1")
+
+[node name="Play Button" type="TextureButton" parent="."]
+offset_left = 469.0
+offset_top = 273.0
+offset_right = 741.0
+offset_bottom = 340.0
+scale = Vector2(0.798, 0.65)
+texture_normal = ExtResource("3_an50a")
+texture_pressed = ExtResource("4_yn4tf")
+
+[node name="Toggle Music" type="TextureButton" parent="."]
+offset_left = 468.0
+offset_top = 496.0
+offset_right = 740.0
+offset_bottom = 563.0
+scale = Vector2(0.8, 0.65)
+toggle_mode = true
+texture_normal = ExtResource("5_wnnrf")
+texture_pressed = ExtResource("6_qg8ct")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_q1nhd")
+autoplay = true
+bus = &"Music"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 470.0
+offset_top = 330.0
+offset_right = 785.0
+offset_bottom = 405.0
+scale = Vector2(0.686, 0.604)
+flat = true
+icon_alignment = 1
+item_count = 3
+allow_reselect = true
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("10_xdh4m")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("11_jgesf")
+popup/item_1/id = 2
+popup/item_2/text = ""
+popup/item_2/icon = ExtResource("12_ixl8e")
+popup/item_2/id = 1
+script = ExtResource("13_rcvuu")
+
+[node name="Music" type="Sprite2D" parent="."]
+position = Vector2(576, 461)
+scale = Vector2(0.816092, 0.636364)
+texture = ExtResource("14_tif3c")
+
+[node name="Devil’sChessTitle" type="Sprite2D" parent="."]
+position = Vector2(577.5, 161.5)
+scale = Vector2(0.806375, 0.648936)
+texture = ExtResource("15_jxtry")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("15_j60x4")]
+
+[connection signal="pressed" from="Play Button" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Toggle Music" to="." method="_on_toggle_music_pressed"]

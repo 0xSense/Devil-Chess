@@ -10,19 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Devil-Chess"
-run/main_scene="res://board.tscn"
+config/name="Devils Chess Gd Script"
+run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
-config/icon="res://Assets/godot.svg"
-
-[display]
-
-window/size/mode=3
+config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="Devil-Chess"
-
-[xr]
-
-openxr/enabled=true
+project/assembly_name="Devils Chess Gd Script"
