@@ -30,6 +30,7 @@ albedo_texture = ExtResource("4_mxw5k")
 metallic = 1.0
 
 [node name="Board" instance=ExtResource("1_suyx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0046314, 0, 0)
 
 [node name="Squares_Exportable" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_8bkhd")
