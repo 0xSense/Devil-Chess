@@ -1,0 +1,264 @@
+[gd_scene load_steps=10 format=3 uid="uid://me85wnqjyee8"]
+
+[ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
+[ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
+[ext_resource type="Texture2D" uid="uid://dqeycsdqdarkh" path="res://Assets/Pieces/Chesspiece_Kingwhite.png" id="2_8e26k"]
+[ext_resource type="Script" path="res://GameLogic/PieceMovement.cs" id="3_5p22h"]
+[ext_resource type="Script" path="res://Tester.cs" id="4_kitv4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
+sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
+sky_horizon_color = Color(0.470588, 0.694118, 0.772549, 1)
+ground_bottom_color = Color(0.25098, 0.129412, 0.2, 1)
+sun_angle_max = 52.19
+
+[sub_resource type="Sky" id="Sky_civef"]
+sky_material = SubResource("ProceduralSkyMaterial_w4hio")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_1s6ic"]
+background_mode = 2
+background_energy_multiplier = 0.71
+sky = SubResource("Sky_civef")
+ambient_light_energy = 0.0
+tonemap_mode = 3
+tonemap_exposure = 1.75
+tonemap_white = 5.0
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 0.5
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_irws3"]
+
+[node name="game_primary" type="Node3D"]
+script = ExtResource("1_oriiy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.645445, 0.763807, 0, -0.763807, 0.645445, 0, 1.44958, 1.80221)
+fov = 60.0
+
+[node name="Board" parent="." instance=ExtResource("1_fl1oh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00271, 0, 0.072)
+
+[node name="SquareMarkers" type="Node3D" parent="."]
+
+[node name="Square1" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.599603)
+
+[node name="Square2" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.599603)
+
+[node name="Square3" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.599603)
+
+[node name="Square4" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.599603)
+
+[node name="Square5" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.599603)
+
+[node name="Square6" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.599603)
+
+[node name="Square7" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.599603)
+
+[node name="Square8" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.599603)
+
+[node name="Square9" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.402617)
+
+[node name="Square10" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.402617)
+
+[node name="Square11" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.402617)
+
+[node name="Square12" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.402617)
+
+[node name="Square13" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.402617)
+
+[node name="Square14" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.402617)
+
+[node name="Square15" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.402617)
+
+[node name="Square16" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.402617)
+
+[node name="Square17" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.211952)
+
+[node name="Square18" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.211952)
+
+[node name="Square19" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.211952)
+
+[node name="Square20" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.211952)
+
+[node name="Square21" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.211952)
+
+[node name="Square22" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.211952)
+
+[node name="Square23" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.211952)
+
+[node name="Square24" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.211952)
+
+[node name="Square25" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.0169868)
+
+[node name="Square26" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.0169868)
+
+[node name="Square27" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.0169868)
+
+[node name="Square28" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.0169868)
+
+[node name="Square29" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.0169868)
+
+[node name="Square30" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.0169868)
+
+[node name="Square31" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.0169868)
+
+[node name="Square32" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.0169868)
+
+[node name="Square33" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.177979)
+
+[node name="Square34" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.177979)
+
+[node name="Square35" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.177979)
+
+[node name="Square36" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.177979)
+
+[node name="Square37" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.177979)
+
+[node name="Square38" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.177979)
+
+[node name="Square39" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.177979)
+
+[node name="Square40" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.177979)
+
+[node name="Square41" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.370077)
+
+[node name="Square42" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.370077)
+
+[node name="Square43" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.370077)
+
+[node name="Square44" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.370077)
+
+[node name="Square45" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.370077)
+
+[node name="Square46" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.370077)
+
+[node name="Square47" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.370077)
+
+[node name="Square48" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.370077)
+
+[node name="Square49" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.559308)
+
+[node name="Square50" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.559308)
+
+[node name="Square51" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.559308)
+
+[node name="Square52" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.559308)
+
+[node name="Square53" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.559308)
+
+[node name="Square54" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.559308)
+
+[node name="Square55" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.559308)
+
+[node name="Square56" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.559308)
+
+[node name="Square57" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.748539)
+
+[node name="Square58" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.748539)
+
+[node name="Square59" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.748539)
+
+[node name="Square60" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.748539)
+
+[node name="Square61" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.748539)
+
+[node name="Square62" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.748539)
+
+[node name="Square63" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.748539)
+
+[node name="Square64" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.748539)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1s6ic")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.762173, -0.606127, 0.227383, -0.465937, -0.269762, 0.842693, -0.44944, -0.748224, -0.488022, 0, 1.53022, 2.45613)
+light_color = Color(1, 0.898039, 0.917647, 1)
+light_energy = 1.5
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 0.1
+
+[node name="Pieces" type="Node3D" parent="."]
+
+[node name="W_King" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.0918174, 0.214927, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_8e26k")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="ChessLogicTester" type="Node3D" parent="."]
+script = ExtResource("4_kitv4")
+
+[node name="HighlightedSquare" type="Sprite3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, -6.99382e-07, -16, 0, 16, -6.99382e-07, 0.0964625, 0.112484, -0.0248319)
+modulate = Color(0.411765, 0.576471, 0.0705882, 1)
+texture = SubResource("CanvasTexture_irws3")

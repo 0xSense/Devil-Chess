@@ -10,11 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Devils Chess Gd Script"
+config/name="Devil-Chess"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="Devils Chess Gd Script"
+project/assembly_name="Devil-Chess"
+
+[rendering]
+
+anti_aliasing/quality/use_taa=true

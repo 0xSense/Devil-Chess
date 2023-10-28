@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class Tester : Marker2D
+public partial class Tester : Node3D
 {
     public override void _Ready()
     {

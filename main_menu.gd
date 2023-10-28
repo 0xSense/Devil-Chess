@@ -15,7 +15,7 @@ func _process(delta):
 
 # Make sure this is sending to the chessboard scene when final build is being made
 func _on_texture_button_pressed():
-	get_tree().change_scene_to_file("res://chess_board.tscn")
+	get_tree().change_scene_to_file("res://game_primary.tscn")
 
 var music_bus = AudioServer.get_bus_index("Music")
 
