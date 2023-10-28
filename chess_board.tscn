@@ -1,262 +1,473 @@
-[gd_scene load_steps=3 format=3 uid="uid://by6cwr8nkl21s"]
+[gd_scene load_steps=15 format=3 uid="uid://by6cwr8nkl21s"]
 
 [ext_resource type="Texture2D" uid="uid://buxtyr5ilxqa4" path="res://Assets/Board/board-piece-dark.png" id="1_dqyxi"]
 [ext_resource type="Texture2D" uid="uid://jqyocbnn0f74" path="res://Assets/Board/board-piece-light.png" id="2_mj5ph"]
+[ext_resource type="Texture2D" uid="uid://bfv74oy0r6dde" path="res://Assets/Chess Pieces/Chesspiece_Bishopblack.png" id="3_jrd0l"]
+[ext_resource type="Texture2D" uid="uid://bpshpfq8uq35o" path="res://Assets/Chess Pieces/Chesspiece_Knightblack.png" id="4_en6ix"]
+[ext_resource type="Texture2D" uid="uid://bi6g4jkb3m78t" path="res://Assets/Chess Pieces/Chesspiece_Kingblack.png" id="5_120pc"]
+[ext_resource type="Texture2D" uid="uid://cgh4e3rdsk4yo" path="res://Assets/Chess Pieces/Chesspiece_Queenblack.png" id="6_fx8o7"]
+[ext_resource type="Texture2D" uid="uid://jncohgco4vgw" path="res://Assets/Chess Pieces/Chesspiece_Rookblack.png" id="7_og2pl"]
+[ext_resource type="Texture2D" uid="uid://cn3y5orvb4rfu" path="res://Assets/Chess Pieces/Chesspiece_Pawnblack.png" id="8_3ac17"]
+[ext_resource type="Texture2D" uid="uid://b8a70vlku484w" path="res://Assets/Chess Pieces/Chesspiece_Bishopwhite.png" id="9_vab52"]
+[ext_resource type="Texture2D" uid="uid://w6dwuqt7wuxj" path="res://Assets/Chess Pieces/Chesspiece_Knightwhite.png" id="10_gxlsf"]
+[ext_resource type="Texture2D" uid="uid://dh3eegokoelhw" path="res://Assets/Chess Pieces/Chesspiece_Kingwhite.png" id="11_dywfw"]
+[ext_resource type="Texture2D" uid="uid://djyxkh3x2muk0" path="res://Assets/Chess Pieces/Chesspiece_Queenwhite.png" id="12_i5b1n"]
+[ext_resource type="Texture2D" uid="uid://c4vxx4x2iuxbe" path="res://Assets/Chess Pieces/Chesspiece_Rookwhite.png" id="13_6qwc0"]
+[ext_resource type="Texture2D" uid="uid://ce5kcnyhd7vet" path="res://Assets/Chess Pieces/Chesspiece_Pawnwhite.png" id="14_ojhib"]
 
 [node name="Chess Board" type="Node3D"]
 
-[node name="A1" type="Sprite3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.19698e-08, 0.27946, -0.960157, 1.22156e-08, 0.960157, 0.27946, 1, -1.77636e-15, -4.37114e-08, -0.819326, 0.879735, 0.56)
+
+[node name="Board" type="Node3D" parent="."]
+
+[node name="A1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 texture = ExtResource("1_dqyxi")
 
-[node name="G1" type="Sprite3D" parent="."]
+[node name="G1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.96)
 texture = ExtResource("1_dqyxi")
 
-[node name="E1" type="Sprite3D" parent="."]
+[node name="E1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.64)
 texture = ExtResource("1_dqyxi")
 
-[node name="C1" type="Sprite3D" parent="."]
+[node name="C1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.32)
 texture = ExtResource("1_dqyxi")
 
-[node name="B1" type="Sprite3D" parent="."]
+[node name="B1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.16)
 texture = ExtResource("2_mj5ph")
 
-[node name="D1" type="Sprite3D" parent="."]
+[node name="D1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.48)
 texture = ExtResource("2_mj5ph")
 
-[node name="F1" type="Sprite3D" parent="."]
+[node name="F1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.8)
 texture = ExtResource("2_mj5ph")
 
-[node name="H1" type="Sprite3D" parent="."]
+[node name="H1" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1.12)
 texture = ExtResource("2_mj5ph")
 
-[node name="A2" type="Sprite3D" parent="."]
+[node name="A2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0)
 texture = ExtResource("2_mj5ph")
 
-[node name="C2" type="Sprite3D" parent="."]
+[node name="C2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0.32)
 texture = ExtResource("2_mj5ph")
 
-[node name="E2" type="Sprite3D" parent="."]
+[node name="E2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0.64)
 texture = ExtResource("2_mj5ph")
 
-[node name="G2" type="Sprite3D" parent="."]
+[node name="G2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0.96)
 texture = ExtResource("2_mj5ph")
 
-[node name="B2" type="Sprite3D" parent="."]
+[node name="B2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0.16)
 texture = ExtResource("1_dqyxi")
 
-[node name="H2" type="Sprite3D" parent="."]
+[node name="H2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 1.12)
 texture = ExtResource("1_dqyxi")
 
-[node name="F2" type="Sprite3D" parent="."]
+[node name="F2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0.8)
 texture = ExtResource("1_dqyxi")
 
-[node name="D2" type="Sprite3D" parent="."]
+[node name="D2" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.16, 0, 0.48)
 texture = ExtResource("1_dqyxi")
 
-[node name="B3" type="Sprite3D" parent="."]
+[node name="B3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 0.16)
 texture = ExtResource("2_mj5ph")
 
-[node name="D3" type="Sprite3D" parent="."]
+[node name="D3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 0.48)
 texture = ExtResource("2_mj5ph")
 
-[node name="F3" type="Sprite3D" parent="."]
+[node name="F3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 0.8)
 texture = ExtResource("2_mj5ph")
 
-[node name="H3" type="Sprite3D" parent="."]
+[node name="H3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 1.12)
 texture = ExtResource("2_mj5ph")
 
-[node name="A3" type="Sprite3D" parent="."]
+[node name="A3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 0)
 texture = ExtResource("1_dqyxi")
 
-[node name="G3" type="Sprite3D" parent="."]
+[node name="G3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 0.96)
 texture = ExtResource("1_dqyxi")
 
-[node name="E3" type="Sprite3D" parent="."]
+[node name="E3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 0.64)
 texture = ExtResource("1_dqyxi")
 
-[node name="C3" type="Sprite3D" parent="."]
+[node name="C3" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.32, 0, 0.32)
 texture = ExtResource("1_dqyxi")
 
-[node name="A4" type="Sprite3D" parent="."]
+[node name="A4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 0)
 texture = ExtResource("2_mj5ph")
 
-[node name="C4" type="Sprite3D" parent="."]
+[node name="C4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 0.32)
 texture = ExtResource("2_mj5ph")
 
-[node name="E4" type="Sprite3D" parent="."]
+[node name="E4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 0.64)
 texture = ExtResource("2_mj5ph")
 
-[node name="G4" type="Sprite3D" parent="."]
+[node name="G4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 0.96)
 texture = ExtResource("2_mj5ph")
 
-[node name="B4" type="Sprite3D" parent="."]
+[node name="B4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 0.16)
 texture = ExtResource("1_dqyxi")
 
-[node name="H4" type="Sprite3D" parent="."]
+[node name="H4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 1.12)
 texture = ExtResource("1_dqyxi")
 
-[node name="F4" type="Sprite3D" parent="."]
+[node name="F4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 0.8)
 texture = ExtResource("1_dqyxi")
 
-[node name="D4" type="Sprite3D" parent="."]
+[node name="D4" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.48, 0, 0.48)
 texture = ExtResource("1_dqyxi")
 
-[node name="A5" type="Sprite3D" parent="."]
+[node name="A5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 0)
 texture = ExtResource("1_dqyxi")
 
-[node name="G5" type="Sprite3D" parent="."]
+[node name="G5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 0.96)
 texture = ExtResource("1_dqyxi")
 
-[node name="E5" type="Sprite3D" parent="."]
+[node name="E5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 0.64)
 texture = ExtResource("1_dqyxi")
 
-[node name="C5" type="Sprite3D" parent="."]
+[node name="C5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 0.32)
 texture = ExtResource("1_dqyxi")
 
-[node name="B5" type="Sprite3D" parent="."]
+[node name="B5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 0.16)
 texture = ExtResource("2_mj5ph")
 
-[node name="D5" type="Sprite3D" parent="."]
+[node name="D5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 0.48)
 texture = ExtResource("2_mj5ph")
 
-[node name="F5" type="Sprite3D" parent="."]
+[node name="F5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 0.8)
 texture = ExtResource("2_mj5ph")
 
-[node name="H5" type="Sprite3D" parent="."]
+[node name="H5" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.64, 0, 1.12)
 texture = ExtResource("2_mj5ph")
 
-[node name="A6" type="Sprite3D" parent="."]
+[node name="A6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 0)
 texture = ExtResource("2_mj5ph")
 
-[node name="C6" type="Sprite3D" parent="."]
+[node name="C6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 0.32)
 texture = ExtResource("2_mj5ph")
 
-[node name="E6" type="Sprite3D" parent="."]
+[node name="E6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 0.64)
 texture = ExtResource("2_mj5ph")
 
-[node name="G6" type="Sprite3D" parent="."]
+[node name="G6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 0.96)
 texture = ExtResource("2_mj5ph")
 
-[node name="B6" type="Sprite3D" parent="."]
+[node name="B6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 0.16)
 texture = ExtResource("1_dqyxi")
 
-[node name="H6" type="Sprite3D" parent="."]
+[node name="H6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 1.12)
 texture = ExtResource("1_dqyxi")
 
-[node name="F6" type="Sprite3D" parent="."]
+[node name="F6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 0.8)
 texture = ExtResource("1_dqyxi")
 
-[node name="D6" type="Sprite3D" parent="."]
+[node name="D6" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.8, 0, 0.48)
 texture = ExtResource("1_dqyxi")
 
-[node name="A7" type="Sprite3D" parent="."]
+[node name="A7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 0)
 texture = ExtResource("1_dqyxi")
 
-[node name="G7" type="Sprite3D" parent="."]
+[node name="G7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 0.96)
 texture = ExtResource("1_dqyxi")
 
-[node name="E7" type="Sprite3D" parent="."]
+[node name="E7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 0.64)
 texture = ExtResource("1_dqyxi")
 
-[node name="C7" type="Sprite3D" parent="."]
+[node name="C7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 0.32)
 texture = ExtResource("1_dqyxi")
 
-[node name="B7" type="Sprite3D" parent="."]
+[node name="B7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 0.16)
 texture = ExtResource("2_mj5ph")
 
-[node name="D7" type="Sprite3D" parent="."]
+[node name="D7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 0.48)
 texture = ExtResource("2_mj5ph")
 
-[node name="F7" type="Sprite3D" parent="."]
+[node name="F7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 0.8)
 texture = ExtResource("2_mj5ph")
 
-[node name="H7" type="Sprite3D" parent="."]
+[node name="H7" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.96, 0, 1.12)
 texture = ExtResource("2_mj5ph")
 
-[node name="A8" type="Sprite3D" parent="."]
+[node name="A8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 0)
 texture = ExtResource("2_mj5ph")
 
-[node name="C8" type="Sprite3D" parent="."]
+[node name="C8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 0.32)
 texture = ExtResource("2_mj5ph")
 
-[node name="B8" type="Sprite3D" parent="."]
+[node name="B8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 0.16)
 texture = ExtResource("1_dqyxi")
 
-[node name="H8" type="Sprite3D" parent="."]
+[node name="H8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 1.12)
 texture = ExtResource("1_dqyxi")
 
-[node name="F8" type="Sprite3D" parent="."]
+[node name="F8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 0.8)
 texture = ExtResource("1_dqyxi")
 
-[node name="D8" type="Sprite3D" parent="."]
+[node name="D8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 0.48)
 texture = ExtResource("1_dqyxi")
 
-[node name="E8" type="Sprite3D" parent="."]
+[node name="E8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 0.64)
 texture = ExtResource("2_mj5ph")
 
-[node name="G8" type="Sprite3D" parent="."]
+[node name="G8" type="Sprite3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.12, 0, 0.96)
 texture = ExtResource("2_mj5ph")
+
+[node name="Pieces" type="Node3D" parent="."]
+
+[node name="Bishop_Black_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 0.32)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("3_jrd0l")
+
+[node name="Bishop_Black_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 0.8)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("3_jrd0l")
+
+[node name="Knight_Black_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 0.16)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("4_en6ix")
+
+[node name="Knight_Black_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 0.96)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("4_en6ix")
+
+[node name="King_Black" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 0.64)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("5_120pc")
+
+[node name="Queen_Black_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 0.48)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("6_fx8o7")
+
+[node name="Rook_Black_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("7_og2pl")
+
+[node name="Rook_Black_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 1.12, 0.22, 1.12)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("7_og2pl")
+
+[node name="Pawn_Black_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Pawn_Black_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 0.16)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Pawn_Black_3" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 0.32)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Pawn_Black_4" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 0.48)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Pawn_Black_5" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 0.64)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Pawn_Black_6" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 0.8)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Pawn_Black_7" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 0.96)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Pawn_Black_8" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.96, 0.22, 1.12)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_3ac17")
+
+[node name="Bishop_White_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 0.32)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("9_vab52")
+
+[node name="Bishop_White_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 0.8)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("9_vab52")
+
+[node name="Knight_White_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 0.16)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("10_gxlsf")
+
+[node name="Knight_White_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 0.96)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("10_gxlsf")
+
+[node name="King_White" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 0.64)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("11_dywfw")
+
+[node name="Queen_White_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 0.48)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("12_i5b1n")
+
+[node name="Rook_White_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("13_6qwc0")
+
+[node name="Rook_White_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.22, 1.12)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("13_6qwc0")
+
+[node name="Pawn_White_1" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")
+
+[node name="Pawn_White_2" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 0.16)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")
+
+[node name="Pawn_White_3" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 0.32)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")
+
+[node name="Pawn_White_4" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 0.48)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")
+
+[node name="Pawn_White_5" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 0.64)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")
+
+[node name="Pawn_White_6" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 0.8)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")
+
+[node name="Pawn_White_7" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 0.96)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")
+
+[node name="Pawn_White_8" type="Sprite3D" parent="Pieces"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0.16, 0.22, 1.12)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("14_ojhib")

@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://udibcvlsr007"
-path="res://.godot/imported/Queen.png-d47d3aea061c1120ce6b0cedb1dc266f.ctex"
+uid="uid://cn3y5orvb4rfu"
+path.s3tc="res://.godot/imported/Chesspiece_Pawnblack.png-2a28d1837881abfc025041efea45e9af.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Assets/Queen.png"
-dest_files=["res://.godot/imported/Queen.png-d47d3aea061c1120ce6b0cedb1dc266f.ctex"]
+source_file="res://Assets/Chess Pieces/Chesspiece_Pawnblack.png"
+dest_files=["res://.godot/imported/Chesspiece_Pawnblack.png-2a28d1837881abfc025041efea45e9af.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
