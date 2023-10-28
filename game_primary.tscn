@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dqeycsdqdarkh" path="res://Assets/Pieces/Chesspiece_Kingwhite.png" id="2_8e26k"]
 [ext_resource type="Script" path="res://GameLogic/PieceMovement.cs" id="3_5p22h"]
 [ext_resource type="Script" path="res://Tester.cs" id="4_kitv4"]
-[ext_resource type="Script" path="res://HighlightedSquare.cs" id="6_rttqv"]
+[ext_resource type="Script" path="res://GameLogic/HighlightedSquare.cs" id="6_alf3k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
 sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
@@ -263,5 +263,5 @@ script = ExtResource("4_kitv4")
 transform = Transform3D(16, 0, 0, 0, -6.99382e-07, -16, 0, 16, -6.99382e-07, 0.0964625, 0.112484, -0.0248319)
 modulate = Color(0.411765, 0.576471, 0.0705882, 1)
 texture = SubResource("CanvasTexture_irws3")
-script = ExtResource("6_rttqv")
+script = ExtResource("6_alf3k")
 SquareMarkers = NodePath("../SquareMarkers")
