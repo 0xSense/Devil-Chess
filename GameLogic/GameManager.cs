@@ -179,6 +179,18 @@ public partial class GameManager : Node
         }
         else
             queuedSquare = algebraic;
+
+        if (state.GameOver) {
+            if(state.BlackChecked) {
+                GD.Print("YOU WON!!!");
+                var scene = GD.Load<PackedScene>("res://game_won.tscn"); 
+                GetTree().ChangeSceneToPacked(scene);
+            } else if(state.WhiteChecked) {
+                GD.Print("GAME OVER!!!");
+                var scene = GD.Load<PackedScene>("res://game_over.tscn"); 
+                GetTree().ChangeSceneToPacked(scene);
+            }
+        }
     }
 
     public void OnAIMove(SimpleMove move)
@@ -189,6 +201,19 @@ public partial class GameManager : Node
         GetPieceOnSquare(
             new Vector2I(move.fromCol, move.fromRow))?.MoveToChessPosition(
                 FromAlgebraicCoords(new Vector2I(move.toCol, move.toRow)));*/
+
+
+        if (state.GameOver) {
+            if(state.BlackChecked) {
+                GD.Print("YOU WON!!!");
+                var scene = GD.Load<PackedScene>("res://game_won.tscn"); 
+                GetTree().ChangeSceneToPacked(scene);
+            } else if(state.WhiteChecked) {
+                GD.Print("GAME OVER!!!");
+                var scene = GD.Load<PackedScene>("res://game_over.tscn"); 
+                GetTree().ChangeSceneToPacked(scene);
+            }
+        }
     }
 
     private void RefreshBoard()
