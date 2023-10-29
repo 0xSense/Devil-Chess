@@ -320,6 +320,5 @@ public static class ChessLogic
     {
         game.Pos.MakeMove(move, game.Pos.State);
         UpdateReadableState();
-        
     }
 }
