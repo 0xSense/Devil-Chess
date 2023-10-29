@@ -200,60 +200,71 @@ public partial class GameManager : Node
         int bRookCount = 0;
         int wRookCount = 0;
 
+        foreach (PieceMovement piece in pieces)
+        {
+            piece.Hide();
+        }
+
         for (int col = 0; col < 8; col++)
         {
             for (int row = 0; row < 8; row++)
             {
                 char piece = state.board[7-row,col];
 
+                PieceMovement pMovement;
+
                 Vector2I pos = new(col, row);
 
                 switch (piece)
                 {
                     case 'K':
-                    pieces[kings[0]].MoveToChessPosition(pos);                    
+                    pMovement = pieces[kings[0]];                     
                     break;
                     case 'Q':
-                    pieces[queens[0]].MoveToChessPosition(pos);
+                    pMovement = pieces[queens[0]];
                     break;
                     case 'R':
-                    pieces[rooks[wRookCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[rooks[wRookCount++]];
                     break;
                     case 'B':
-                    pieces[bishops[wBishopCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[bishops[wBishopCount++]];
                     break;
                     case 'N':
-                    pieces[knights[wKnightCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[knights[wKnightCount++]];
                     break;
                     case 'P':
-                    pieces[pawns[wPawnCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[pawns[wPawnCount++]];
                     break;
 
                     case 'k':
-                    pieces[kings[1]].MoveToChessPosition(pos);
+                    pMovement = pieces[kings[1]];
                     break;
                     case 'q':
-                    pieces[queens[1]].MoveToChessPosition(pos);
+                    pMovement = pieces[queens[1]];
                     break;
                     case 'r':
-                    pieces[rooks[2+bRookCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[rooks[2+bRookCount++]];
                     break;
                     case 'b':
-                    pieces[bishops[2+bBishopCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[bishops[2+bBishopCount++]];
                     break;
                     case 'n':
-                    pieces[knights[2+bKnightCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[knights[2+bKnightCount++]];
                     break;
                     case 'p':
-                    pieces[pawns[8+bPawnCount++]].MoveToChessPosition(pos);
+                    pMovement = pieces[pawns[8+bPawnCount++]];
                     break;
                     case ' ':
+                    pMovement = null;
                     break;
 
                     default:
+                    pMovement = null;
                     //GD.Print("Invalid character: ", piece);
                     break;
                 }
+                pMovement?.MoveToChessPosition(pos);
+                pMovement?.Show();
             }
         }
     }

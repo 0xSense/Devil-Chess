@@ -31,14 +31,76 @@ struct MoveEvalPair
 
 static class LeafValues
 {
+    //public const int[64] KingValue;
+    public static readonly int[] KingValues = {
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        -20, -20, -20, -20, -20, -20, -20, -20,
+        0, 25, 20, -15, 0, -15, 25, 15,
+    };
+
+    public static readonly int[] QueenValues = { //925
+        925, 925, 925, 925, 925, 925, 925, 925,
+        925, 925, 925, 925, 925, 925, 925, 925,
+        925, 925, 935, 935, 935, 935, 925, 925,
+        925, 925, 935, 935, 935, 935, 925, 925,
+        925, 925, 935, 935, 935, 935, 925, 925,
+        925, 925, 935, 935, 935, 935, 925, 925,
+        925, 925, 925, 925, 925, 935, 925, 925,
+        925, 925, 925, 925, 925, 925, 925, 925,
+    };
+
+    public static readonly int[] RookValues = { //500
+        500, 500, 500, 500, 500, 500, 500, 500,
+        550, 550, 550, 550, 550, 550, 550, 550,
+        500, 500, 500, 500, 500, 500, 500, 500,
+        500, 500, 500, 500, 500, 500, 500, 500,
+        500, 500, 500, 500, 500, 500, 500, 500,
+        500, 500, 500, 500, 500, 500, 500, 500,
+        500, 500, 500, 500, 500, 500, 500, 500,
+        500, 500, 500, 500, 500, 500, 500, 500,
+    };
+    public static readonly int[] BishopValues = { //330
+        330, 330, 330, 330, 330, 330, 330, 330,
+        330, 330, 330, 330, 330, 330, 330, 330,
+        330, 330, 330, 330, 330, 330, 330, 330,
+        330, 330, 330, 330, 330, 330, 330, 330,
+        330, 330, 330, 330, 330, 330, 330, 330,
+        330, 330, 330, 330, 330, 330, 330, 330,
+        330, 350, 330, 330, 330, 330, 350, 330,
+        330, 330, 330, 330, 330, 330, 330, 330,
+    };
+    public static readonly int[] KnightValues = { //300
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+    };
+    public static readonly int[] PawnValues = { //100
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0,
+    };
+
     public const int KingValue = 0;
     public const int QueenValue = 925;
     public const int RookValue = 500;
     public const int BishopValue = 330;
     public const int KnightValue = 300;
     public const int PawnValue = 100;
-
-    
 
 }
 
@@ -144,30 +206,7 @@ public class OpponentMinmax : IOpponent
             white = p.IsWhite;
             black = !white;
             colorMultiplier = (1 * (*(SByte*)&white)) + (-1 * (*(SByte*)&black)); 
-            //colorMultiplier = p.IsWhite ? 1 : -1;
 
-            /*
-            switch (p.Type())
-            {
-                case PieceTypes.Queen:
-                    eval += LeafValues.QueenValue * colorMultiplier;
-                    break;
-                case PieceTypes.Rook:
-                    eval += LeafValues.RookValue * colorMultiplier;
-                    break;
-                case PieceTypes.Bishop:
-                    eval += LeafValues.BishopValue * colorMultiplier;
-                    break;
-                case PieceTypes.Knight:
-                    eval += LeafValues.KnightValue * colorMultiplier;
-                    break;
-                case PieceTypes.Pawn:
-                    eval += LeafValues.PawnValue * colorMultiplier;
-                    break;                
-                default:
-                    break;
-            }*/
-            //eval += pieceValues.GetValueOrDefault(p.Type()) * colorMultiplier;
             eval += pieceValuesArray[(int)p.Type()] * colorMultiplier;
             i++;
         }

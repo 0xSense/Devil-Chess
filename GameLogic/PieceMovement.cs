@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 public partial class PieceMovement : Sprite3D
 {
+    private bool hidden = false;
     public Vector2I ChessPosition; // Chess coords, 0-indexed
     private static Marker3D[,] squareMarkers = new Marker3D[8,8];
     [Export] Node3D SquareMarkers;
@@ -69,7 +71,7 @@ public partial class PieceMovement : Sprite3D
 
     public void MoveToChessPosition(Vector2I coords)
     {
-        GD.Print("Moving to: " + coords);
+        //GD.Print("Moving to: " + coords);
         ChessPosition = coords;
         Marker3D closest = squareMarkers[0,0];
         float shortestDist = Position.DistanceTo(squareMarkers[0,0].Position);
@@ -86,7 +88,7 @@ public partial class PieceMovement : Sprite3D
             }
         }
         
-        Position = closest.Position;
+        Position = closest.Position;        
     }
 
 
