@@ -5,6 +5,7 @@ using Rudzoft.ChessLib.MoveGeneration;
 using Rudzoft.ChessLib.Types;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
@@ -199,6 +200,7 @@ public static class ChessLogic
     {
         if (!((HumanPlayer)human).CurrentTurn)
         {
+            GD.Print("Not your turn.");
             return false;
         }
 
@@ -225,7 +227,7 @@ public static class ChessLogic
             }
         }        
         
-
+        GD.Print("Invalid move");
         return false;
     }
 

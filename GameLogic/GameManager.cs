@@ -172,7 +172,7 @@ public partial class GameManager : Node
                 }
                 else
                 {
-                    GD.Print("Invalid move or not your turn.");
+                    //GD.Print("Invalid move or not your turn.");
                 }
                 queuedSquare = NULL_SQUARE;
             }
