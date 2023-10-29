@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://rd7yxplvghra"]
-
-[ext_resource type="AudioStream" uid="uid://6f2qmg1bmrxm" path="res://Menu-007.mp3" id="1_w02uu"]
-
-[node name="DifficultyButtonPress" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_w02uu")

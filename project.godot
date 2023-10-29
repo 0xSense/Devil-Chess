@@ -15,13 +15,6 @@ run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-PlayButtonPress="*res://play_button_press.tscn"
-MusicTogglePress="*res://music_toggle_press.tscn"
-DifficultyButtonPress="*res://difficulty_button_press.tscn"
-DifficultySelected="*res://difficulty_selected.tscn"
-
 [display]
 
 window/stretch/mode="canvas_items"
@@ -40,5 +33,4 @@ Click={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 anti_aliasing/quality/use_taa=true
