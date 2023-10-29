@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://me85wnqjyee8"]
 
 [ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
+[ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
 [ext_resource type="Texture2D" uid="uid://dqeycsdqdarkh" path="res://Assets/Pieces/Chesspiece_Kingwhite.png" id="2_8e26k"]
-[ext_resource type="Texture2D" uid="uid://bte34wbg8glgv" path="res://Assets/Pieces/Chesspiece_Queenwhite.png" id="3_4647s"]
-[ext_resource type="Texture2D" uid="uid://c7a7nota5powg" path="res://Assets/Pieces/Chesspiece_Bishopwhite.png" id="4_ryn8r"]
-[ext_resource type="Texture2D" uid="uid://bpv7kg3yume6b" path="res://Assets/Pieces/Chesspiece_Knightwhite.png" id="5_eooam"]
-[ext_resource type="Texture2D" uid="uid://d3sg68oa6h44q" path="res://Assets/Pieces/Chesspiece_Rookwhite.png" id="6_pckc1"]
+[ext_resource type="Script" path="res://GameLogic/PieceMovement.cs" id="3_5p22h"]
+[ext_resource type="Script" path="res://Tester.cs" id="4_kitv4"]
+[ext_resource type="Script" path="res://GameLogic/HighlightedSquare.cs" id="6_alf3k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
 sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
@@ -32,6 +32,7 @@ glow_intensity = 0.5
 [sub_resource type="CanvasTexture" id="CanvasTexture_irws3"]
 
 [node name="game_primary" type="Node3D"]
+script = ExtResource("1_oriiy")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.645445, 0.763807, 0, -0.763807, 0.645445, 0, 1.44958, 1.80221)
@@ -247,57 +248,20 @@ shadow_blur = 0.1
 
 [node name="Pieces" type="Node3D" parent="."]
 
-[node name="W_King" type="Sprite3D" parent="Pieces"]
+[node name="W_King" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
 transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.0918174, 0.214927, 0.731743)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("2_8e26k")
-
-[node name="W_Queen_1" type="Sprite3D" parent="Pieces"]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.0973528, 0.215, 0.749)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("3_4647s")
-
-[node name="W_Bishop_1" type="Sprite3D" parent="Pieces"]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.288129, 0.215, 0.749)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("4_ryn8r")
-
-[node name="W_Bishop_2" type="Sprite3D" parent="Pieces"]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.286852, 0.215, 0.749)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("4_ryn8r")
-
-[node name="W_Knight_1" type="Sprite3D" parent="Pieces"]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.480122, 0.215, 0.749)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("5_eooam")
-
-[node name="W_Knight_2" type="Sprite3D" parent="Pieces"]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.484916, 0.215, 0.749002)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("5_eooam")
-
-[node name="W_Rook_1" type="Sprite3D" parent="Pieces"]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.675593, 0.215, 0.749002)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("6_pckc1")
-
-[node name="W_Rook_2" type="Sprite3D" parent="Pieces"]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.673403, 0.215, 0.749002)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("6_pckc1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
 
 [node name="ChessLogicTester" type="Node3D" parent="."]
+script = ExtResource("4_kitv4")
 
-[node name="HighlightedSquare" type="Sprite3D" parent="."]
+[node name="HighlightedSquare" type="Sprite3D" parent="." node_paths=PackedStringArray("SquareMarkers")]
 transform = Transform3D(16, 0, 0, 0, -6.99382e-07, -16, 0, 16, -6.99382e-07, 0.0964625, 0.112484, -0.0248319)
 modulate = Color(0.411765, 0.576471, 0.0705882, 1)
 texture = SubResource("CanvasTexture_irws3")
+script = ExtResource("6_alf3k")
+SquareMarkers = NodePath("../SquareMarkers")
