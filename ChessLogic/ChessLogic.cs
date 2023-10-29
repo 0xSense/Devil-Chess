@@ -310,6 +310,7 @@ public static class ChessLogic
 
         state.GameOver = !(game.Pos.GenerateMoves().Length > 0);
         state.WhiteToMove = (game.Pos.SideToMove == Player.White);
+
         state.HumanIsWhite = humanIsWhite;
 
         readableState = state;
@@ -319,5 +320,6 @@ public static class ChessLogic
     {
         game.Pos.MakeMove(move, game.Pos.State);
         UpdateReadableState();
+        
     }
 }

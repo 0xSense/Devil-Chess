@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cfjqif8f48urh"
+path="res://.godot/imported/In Game.mp3-f6c728cbee6e3b6b995b2053f4fd7728.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio Assets/In Game.mp3"
+dest_files=["res://.godot/imported/In Game.mp3-f6c728cbee6e3b6b995b2053f4fd7728.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
