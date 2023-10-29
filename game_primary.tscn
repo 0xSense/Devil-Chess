@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://me85wnqjyee8"]
+[gd_scene load_steps=38 format=3 uid="uid://me85wnqjyee8"]
 
 [ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
 [ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://c00q2boamsmju" path="res://Assets/Pieces/Chesspiece_Pawnblack.png" id="15_wj81i"]
 [ext_resource type="Script" path="res://GameLogic/GameManager.cs" id="18_cq0eq"]
 [ext_resource type="Texture2D" uid="uid://b434ae4piiet2" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0001.png" id="19_n4epo"]
-[ext_resource type="Texture2D" uid="uid://c13hwyo8jh7ni" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0002.png" id="20_kvj0l"]
 [ext_resource type="Texture2D" uid="uid://wqgj2ygyg42w" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0003.png" id="21_5mm43"]
 [ext_resource type="Texture2D" uid="uid://c1d8ush3l01ax" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0004.png" id="22_cvh64"]
 [ext_resource type="Texture2D" uid="uid://t8dyslu5yh17" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0005.png" id="23_fcsaq"]
@@ -63,9 +62,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("19_n4epo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_kvj0l")
 }, {
 "duration": 1.0,
 "texture": ExtResource("21_5mm43")
@@ -600,4 +596,5 @@ script = ExtResource("18_cq0eq")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466503, 0.683751, -2.02631)
 sprite_frames = SubResource("SpriteFrames_idnvd")
-frame_progress = 0.628127
+frame = 4
+frame_progress = 0.111266
