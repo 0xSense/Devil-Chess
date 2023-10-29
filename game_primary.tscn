@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://me85wnqjyee8"]
+[gd_scene load_steps=39 format=3 uid="uid://me85wnqjyee8"]
 
 [ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
 [ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://babw0fb11w54p" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0012.png" id="30_ooqnb"]
 [ext_resource type="Texture2D" uid="uid://xynxi481u00c" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0013.png" id="31_dkany"]
 [ext_resource type="Texture2D" uid="uid://bgru1ag6fowye" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0014.png" id="32_4v0d0"]
+[ext_resource type="Script" path="res://AnimationHandler.gd" id="33_g6fjv"]
 [ext_resource type="Texture2D" uid="uid://c6w7c5e0jwdeh" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0015.png" id="33_lclod"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
@@ -111,7 +112,7 @@ animations = [{
 script = ExtResource("1_oriiy")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.645445, 0.763807, 0, -0.763807, 0.645445, 0, 1.89911, 1.94681)
+transform = Transform3D(1, 0, 0, 0, 0.887076, 0.461624, 0, -0.461624, 0.887076, -0.0705761, 2.10208, 2.55263)
 fov = 45.0
 
 [node name="Board" parent="." instance=ExtResource("1_fl1oh")]
@@ -593,8 +594,10 @@ SquareMarkers = NodePath("../SquareMarkers")
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("18_cq0eq")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466503, 0.683751, -2.02631)
+[node name="animation_node" type="Node3D" parent="."]
+script = ExtResource("33_g6fjv")
+
+[node name="Background" type="AnimatedSprite3D" parent="animation_node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0256157, 0.613784, -1.97272)
+double_sided = false
 sprite_frames = SubResource("SpriteFrames_idnvd")
-frame = 4
-frame_progress = 0.111266
