@@ -52,4 +52,5 @@ public interface IBoard : IEnumerable<Piece>
     int PieceCount(PieceTypes pt, Player p);
     int PieceCount(PieceTypes pt);
     int PieceCount();
+    public Piece[] GetPieceArray();
 }

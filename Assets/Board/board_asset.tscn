@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://u27wx33sdxkr"]
+[gd_scene load_steps=12 format=3 uid="uid://u27wx33sdxkr"]
 
 [ext_resource type="PackedScene" uid="uid://b06ylqqxyexuj" path="res://Assets/Board/Board.glb" id="1_suyx5"]
 [ext_resource type="Texture2D" uid="uid://b3r24iqx0omxb" path="res://Assets/Board/Board_NormalMap(1).png" id="2_upupu"]
@@ -29,7 +29,11 @@ metallic = 1.0
 albedo_texture = ExtResource("4_mxw5k")
 metallic = 1.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_esqyn"]
+size = Vector3(1.6, 0.25, 1.6)
+
 [node name="Board" instance=ExtResource("1_suyx5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99909, 0, 0)
 
 [node name="Squares_Exportable" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_8bkhd")
@@ -42,3 +46,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ho2gt")
 [node name="Board_Exportable" parent="." index="2"]
 surface_material_override/0 = ExtResource("4_rnl4o")
 surface_material_override/1 = ExtResource("5_psvi6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+disable_mode = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99644, 0.000764787, 0)
+shape = SubResource("BoxShape3D_esqyn")

@@ -5,6 +5,7 @@ using Rudzoft.ChessLib.MoveGeneration;
 using Rudzoft.ChessLib.Types;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
@@ -17,21 +18,21 @@ Quick overview of the code you need to worry about as a gameplay programmer:
 GameState - struct representing the state of the chess game including piece positions;
 SimpleMove - struct representing a single move (returned by ChessLogic.GetLegalMoves())
 ChessLogic - Static class which contains all methods you may need to call:
-    ChessLogic.ReverseColors() - Switches who is playing white and who is playing black (human defaults to white);
-    ChessLogic.GetBoardState() -> GameState - Returns current state of the board as GameState instance;
-    ChessLogic.SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow) - Call this to tell my code when the player has moved a piece in the game world. This function will only apply the move if it is legal and will return false otherwise.
-    ChessLogic.GetLegalMoves() -> List<SimpleMove> - Returns all legal moves in current position. Useful for highlighting legal moves for player.
-    ChessLogic.NewGame(bool humanIsWhite) - Starts new game. Call this before any other functions but *after* registering a function with the AIMoveFinished event.
-    ChessLogic.AIMoveFinished - C# event which is invoked when the AI makes a move. Assign at least one callback before calling any other ChessLogic method.
+	ChessLogic.ReverseColors() - Switches who is playing white and who is playing black (human defaults to white);
+	ChessLogic.GetBoardState() -> GameState - Returns current state of the board as GameState instance;
+	ChessLogic.SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow) - Call this to tell my code when the player has moved a piece in the game world. This function will only apply the move if it is legal and will return false otherwise.
+	ChessLogic.GetLegalMoves() -> List<SimpleMove> - Returns all legal moves in current position. Useful for highlighting legal moves for player.
+	ChessLogic.NewGame(bool humanIsWhite) - Starts new game. Call this before any other functions but *after* registering a function with the AIMoveFinished event.
+	ChessLogic.AIMoveFinished - C# event which is invoked when the AI makes a move. Assign at least one callback before calling any other ChessLogic method.
 */
 
 // Simple representation of a move based on to and from squares
 public struct SimpleMove
 {
-    int fromCol;
-    int fromRow;
-    int toCol;
-    int toRow;
+    public int fromCol;
+    public int fromRow;
+    public int toCol;
+    public int toRow;
 
     public SimpleMove(int fCol, int fRow, int tCol, int tRow)
     {
@@ -75,6 +76,7 @@ public struct GameState
     public bool GameOver;
     // True if white is to move; false if black is.
     public bool WhiteToMove;
+    public bool HumanIsWhite;
 
     public GameState()
     {
@@ -86,16 +88,19 @@ public struct GameState
         BlackChecked = false;
         GameOver = false;
         WhiteToMove = true;
+        HumanIsWhite = true;
     }
 }
 
 public static class ChessLogic
 {
-    public delegate void AIMoveNotify();
+    public delegate void AIMoveNotify(SimpleMove move);
     public static event AIMoveNotify AIMoveFinished;
 
     private static IPlayer human;
     private static IPlayer AI;
+
+    private static bool humanIsWhite;
 
     const char W_KING = 'K';
     const char W_QUEEN = 'Q';
@@ -129,7 +134,24 @@ public static class ChessLogic
         }
 
         human = new HumanPlayer(humanIsWhite);
-        AI = new OpponentStupid(!humanIsWhite);
+        AI = new OpponentMinmax(!humanIsWhite);
+        ChessLogic.humanIsWhite = humanIsWhite;
+    }
+
+    public static void NewGame(bool humanIsWhite, String fen)
+    {
+        if (AIMoveFinished == null)
+        {
+            throw new Exception("ERROR: You must subscribe a function to AIMoveNotify event before starting a new game.");
+        }
+        else
+        {
+            readableState = new GameState();
+            game = (Game)GameFactory.Create(fen);        
+        }
+
+        human = new HumanPlayer(humanIsWhite);
+        AI = new OpponentMinmax(!humanIsWhite);
     }
 
     // By default, the human plays white; this function inverts that.
@@ -169,12 +191,16 @@ public static class ChessLogic
     }
 
     /*
-    Call this function when the player has moved a piece in the game world to inform my code of it. Takes two ints for the square the piece moves from and two ints for the square the piece moves to (__Col -> x, __Row -> y). This will return false and do nothing if the move is illegal or if it is not the human player's turn.
+     Call this function when the player has moved a piece in the game world to inform my code of it.
+     Takes two ints for the square the piece moves from and two ints for the square the piece moves to (__Col -> x, __Row -> y).
+     This will return false and do nothing if the move is illegal or if it is not the human player's turn.
+     Zero-indexed.
     */
     public static bool SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow)
     {
         if (!((HumanPlayer)human).CurrentTurn)
         {
+            GD.Print("Not your turn.");
             return false;
         }
 
@@ -188,24 +214,55 @@ public static class ChessLogic
 
         foreach (Move testMove in legalMoves)
         {
-            if (testMove.Equals(move))
+            if (testMove.Equals(move) || compareMoveSquaresByStrings(testMove, move))
             {
-                MakeMove(move);
+                MakeMove(testMove);
                 ((IOpponent)AI).BeginPonder();
+                ((HumanPlayer)human).BeginWait();
                 return true;
             }
+            else
+            {
+                //GD.Print(move.FromSquare(), "; ", move.ToSquare());
+            }
         }        
-
-
+        
+        GD.Print("Invalid move " + move);
+        GD.Print(legalMoves.Count());
         return false;
     }
 
     // Do not attempt to call this function from gameplay code.
     public static void SubmitComputerMove(Move move)
     {
-        ((HumanPlayer)human).BeginWait();
+        ((HumanPlayer)human).EndWait();
         MakeMove(move);
-        AIMoveFinished?.Invoke();
+        AIMoveFinished?.Invoke(new SimpleMove(move.FromSquare().File.AsInt(), move.FromSquare().Rank.AsInt(),
+             move.ToSquare().File.AsInt(), move.ToSquare().Rank.AsInt()));
+
+        //PrintMovesDebug();
+    }
+
+    private static bool compareMoveSquaresByStrings(Move m1, Move m2)
+    {
+        return
+            m1.FromSquare().ToString().Equals(m2.FromSquare().ToString()) &&
+            m1.ToSquare().ToString().Equals(m2.ToSquare().ToString())
+        ;
+    }
+
+    private static void PrintMovesDebug()
+    {
+        GD.Print();
+        foreach (Move m in game.Pos.GenerateMoves())
+        {
+            GD.Print(m);
+            if (m.ToString().Equals("O-O"))
+            {
+                GD.Print("Castling: ", m.FromSquare(),  "; ", m.ToSquare());
+            }
+        }
+        GD.Print();
     }
 
     private static char PieceToChar(Piece piece)
@@ -251,8 +308,12 @@ public static class ChessLogic
             }
         }
 
-        state.GameOver = game.Pos.GenerateMoves().Length > 0;
+        state.GameOver = !(game.Pos.GenerateMoves().Length > 0);
         state.WhiteToMove = (game.Pos.SideToMove == Player.White);
+
+        state.HumanIsWhite = humanIsWhite;
+
+        readableState = state;
     }
 
     private static void MakeMove(Move move)
