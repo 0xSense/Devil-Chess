@@ -11,9 +11,7 @@ public partial class PieceMovement : Sprite3D
     public override void _Ready()
     {
         ChessPosition = Vector2I.Zero;
-        GetNode<LoadSignaller>("/root/game_primary").SceneLoaded += OnLoad;
-        GD.Print("Test");
-        
+        GetNode<LoadSignaller>("/root/game_primary").SceneLoaded += OnLoad;       
     }
     private void OnLoad()
     {

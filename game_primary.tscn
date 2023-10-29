@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://me85wnqjyee8"]
+[gd_scene load_steps=23 format=3 uid="uid://me85wnqjyee8"]
 
 [ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
 [ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://qdg4xp162hjl" path="res://Assets/Pieces/Chesspiece_Bishopblack.png" id="11_p8f5x"]
 [ext_resource type="Texture2D" uid="uid://ljaip6qngxok" path="res://Assets/Pieces/Chesspiece_Knightblack.png" id="12_drdd1"]
 [ext_resource type="Texture2D" uid="uid://c00q2boamsmju" path="res://Assets/Pieces/Chesspiece_Pawnblack.png" id="15_wj81i"]
+[ext_resource type="Script" path="res://GameLogic/GameManager.cs" id="18_cq0eq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
 sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
@@ -524,3 +525,6 @@ modulate = Color(0.411765, 0.576471, 0.0705882, 1)
 texture = SubResource("CanvasTexture_irws3")
 script = ExtResource("6_alf3k")
 SquareMarkers = NodePath("../SquareMarkers")
+
+[node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("18_cq0eq")

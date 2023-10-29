@@ -185,7 +185,10 @@ public static class ChessLogic
     }
 
     /*
-    Call this function when the player has moved a piece in the game world to inform my code of it. Takes two ints for the square the piece moves from and two ints for the square the piece moves to (__Col -> x, __Row -> y). This will return false and do nothing if the move is illegal or if it is not the human player's turn.
+     Call this function when the player has moved a piece in the game world to inform my code of it.
+     Takes two ints for the square the piece moves from and two ints for the square the piece moves to (__Col -> x, __Row -> y).
+     This will return false and do nothing if the move is illegal or if it is not the human player's turn.
+     Zero-indexed.
     */
     public static bool SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow)
     {

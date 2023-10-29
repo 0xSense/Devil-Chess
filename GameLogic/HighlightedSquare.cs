@@ -5,6 +5,8 @@ using System.Linq;
 
 public partial class HighlightedSquare : Sprite3D
 {
+    public delegate void Click(Vector2I square);
+    public event Click SquareClicked;
     public Vector2I ChessPosition; // Chess coords, 0-indexed
     private static Marker3D[,] squareMarkers = new Marker3D[8,8];
     [Export] Node3D SquareMarkers;
@@ -70,6 +72,11 @@ public partial class HighlightedSquare : Sprite3D
         {
             Position = raycastPosition;
             ChessPosition = FindChessPosition(raycastPosition);
+
+            if (Input.IsActionJustPressed("Click"))
+            {
+                SquareClicked?.Invoke(ChessPosition);
+            }
 
             float x = squareMarkers[ChessPosition.Y, ChessPosition.X].Position.X;
             float y = 0.112f;
