@@ -396,6 +396,62 @@ texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
 SquareMarkers = NodePath("../../SquareMarkers")
 
+[node name="W_Pawn2" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.481313, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn3" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.285635, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn4" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.0931864, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn5" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.0996495, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn6" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.292098, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn7" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.455456, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn8" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.647904, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
 [node name="B_Pawn1" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
 transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.673762, 0.203356, -0.385757)
 billboard = 1
@@ -457,62 +513,6 @@ transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0,
 billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
-script = ExtResource("3_5p22h")
-SquareMarkers = NodePath("../../SquareMarkers")
-
-[node name="W_Pawn2" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.481313, 0.203356, 0.548353)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_uvei1")
-script = ExtResource("3_5p22h")
-SquareMarkers = NodePath("../../SquareMarkers")
-
-[node name="W_Pawn3" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.285635, 0.203356, 0.548353)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_uvei1")
-script = ExtResource("3_5p22h")
-SquareMarkers = NodePath("../../SquareMarkers")
-
-[node name="W_Pawn4" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, 0.0931864, 0.203356, 0.548353)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_uvei1")
-script = ExtResource("3_5p22h")
-SquareMarkers = NodePath("../../SquareMarkers")
-
-[node name="W_Pawn5" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.0996495, 0.203356, 0.548353)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_uvei1")
-script = ExtResource("3_5p22h")
-SquareMarkers = NodePath("../../SquareMarkers")
-
-[node name="W_Pawn6" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.292098, 0.203356, 0.548353)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_uvei1")
-script = ExtResource("3_5p22h")
-SquareMarkers = NodePath("../../SquareMarkers")
-
-[node name="W_Pawn7" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.455456, 0.203356, 0.548353)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_uvei1")
-script = ExtResource("3_5p22h")
-SquareMarkers = NodePath("../../SquareMarkers")
-
-[node name="W_Pawn8" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
-transform = Transform3D(0.0749994, 0, 0.000289288, 0, 0.075, 0, -0.000289288, 0, 0.0749994, -0.647904, 0.203356, 0.548353)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
 SquareMarkers = NodePath("../../SquareMarkers")
 

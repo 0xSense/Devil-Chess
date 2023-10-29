@@ -28,10 +28,10 @@ ChessLogic - Static class which contains all methods you may need to call:
 // Simple representation of a move based on to and from squares
 public struct SimpleMove
 {
-    int fromCol;
-    int fromRow;
-    int toCol;
-    int toRow;
+    public int fromCol;
+    public int fromRow;
+    public int toCol;
+    public int toRow;
 
     public SimpleMove(int fCol, int fRow, int tCol, int tRow)
     {
@@ -75,6 +75,7 @@ public struct GameState
     public bool GameOver;
     // True if white is to move; false if black is.
     public bool WhiteToMove;
+    public bool HumanIsWhite;
 
     public GameState()
     {
@@ -86,16 +87,19 @@ public struct GameState
         BlackChecked = false;
         GameOver = false;
         WhiteToMove = true;
+        HumanIsWhite = true;
     }
 }
 
 public static class ChessLogic
 {
-    public delegate void AIMoveNotify();
+    public delegate void AIMoveNotify(SimpleMove move);
     public static event AIMoveNotify AIMoveFinished;
 
     private static IPlayer human;
     private static IPlayer AI;
+
+    private static bool humanIsWhite;
 
     const char W_KING = 'K';
     const char W_QUEEN = 'Q';
@@ -130,6 +134,7 @@ public static class ChessLogic
 
         human = new HumanPlayer(humanIsWhite);
         AI = new OpponentMinmax(!humanIsWhite);
+        ChessLogic.humanIsWhite = humanIsWhite;
     }
 
     public static void NewGame(bool humanIsWhite, String fen)
@@ -207,14 +212,19 @@ public static class ChessLogic
 
         foreach (Move testMove in legalMoves)
         {
-            if (testMove.Equals(move))
+            if (testMove.Equals(move) || compareMoveSquaresByStrings(testMove, move))
             {
-                MakeMove(move);
+                MakeMove(testMove);
                 ((IOpponent)AI).BeginPonder();
+                ((HumanPlayer)human).BeginWait();
                 return true;
             }
+            else
+            {
+                //GD.Print(move.FromSquare(), "; ", move.ToSquare());
+            }
         }        
-
+        
 
         return false;
     }
@@ -222,9 +232,34 @@ public static class ChessLogic
     // Do not attempt to call this function from gameplay code.
     public static void SubmitComputerMove(Move move)
     {
-        ((HumanPlayer)human).BeginWait();
+        ((HumanPlayer)human).EndWait();
         MakeMove(move);
-        AIMoveFinished?.Invoke();
+        AIMoveFinished?.Invoke(new SimpleMove(move.FromSquare().File.AsInt(), move.FromSquare().Rank.AsInt(),
+             move.ToSquare().File.AsInt(), move.ToSquare().Rank.AsInt()));
+
+        //PrintMovesDebug();
+    }
+
+    private static bool compareMoveSquaresByStrings(Move m1, Move m2)
+    {
+        return
+            m1.FromSquare().ToString().Equals(m2.FromSquare().ToString()) &&
+            m1.ToSquare().ToString().Equals(m2.ToSquare().ToString())
+        ;
+    }
+
+    private static void PrintMovesDebug()
+    {
+        GD.Print();
+        foreach (Move m in game.Pos.GenerateMoves())
+        {
+            GD.Print(m);
+            if (m.ToString().Equals("O-O"))
+            {
+                GD.Print("Castling: ", m.FromSquare(),  "; ", m.ToSquare());
+            }
+        }
+        GD.Print();
     }
 
     private static char PieceToChar(Piece piece)
@@ -272,6 +307,9 @@ public static class ChessLogic
 
         state.GameOver = game.Pos.GenerateMoves().Length > 0;
         state.WhiteToMove = (game.Pos.SideToMove == Player.White);
+        state.HumanIsWhite = humanIsWhite;
+
+        readableState = state;
     }
 
     private static void MakeMove(Move move)

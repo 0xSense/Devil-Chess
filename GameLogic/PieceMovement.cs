@@ -67,5 +67,27 @@ public partial class PieceMovement : Sprite3D
         //GD.Print(Position);
     }
 
+    public void MoveToChessPosition(Vector2I coords)
+    {
+        GD.Print("Moving to: " + coords);
+        ChessPosition = coords;
+        Marker3D closest = squareMarkers[0,0];
+        float shortestDist = Position.DistanceTo(squareMarkers[0,0].Position);
+
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                if (Position.DistanceTo(squareMarkers[i,j].Position) < shortestDist)
+                {
+                    closest = squareMarkers[i,j];
+                    shortestDist = Position.DistanceTo(squareMarkers[i,j].Position);                    
+                }
+            }
+        }
+        
+        Position = closest.Position;
+    }
+
 
 }

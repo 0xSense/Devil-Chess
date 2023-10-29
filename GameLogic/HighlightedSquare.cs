@@ -8,7 +8,7 @@ public partial class HighlightedSquare : Sprite3D
     public delegate void Click(Vector2I square);
     public event Click SquareClicked;
     public Vector2I ChessPosition; // Chess coords, 0-indexed
-    private static Marker3D[,] squareMarkers = new Marker3D[8,8];
+    private readonly static Marker3D[,] SquareMarkersArray = new Marker3D[8,8];
     [Export] Node3D SquareMarkers;
 
     public override void _Ready()
@@ -19,7 +19,7 @@ public partial class HighlightedSquare : Sprite3D
     }
     private void OnLoad()
     {
-        if (squareMarkers[0,0] == null)
+        if (SquareMarkersArray[0,0] == null)
         {
             for (int i = 0; i < 64; i++)
             {
@@ -28,7 +28,7 @@ public partial class HighlightedSquare : Sprite3D
                 x = i%8;
                 y = i/8;
 
-                squareMarkers[y,x] = SquareMarkers.GetChild<Marker3D>(i);
+                SquareMarkersArray[y,x] = SquareMarkers.GetChild<Marker3D>(i);
                 //GD.Print(x + " " + y);
             }
         }
@@ -38,8 +38,8 @@ public partial class HighlightedSquare : Sprite3D
     // Heavy function - avoid repeated calls
     private Vector2I FindChessPosition(Vector3 pos)
     {
-        Marker3D closest = squareMarkers[0,0];
-        float shortestDist = pos.DistanceTo(squareMarkers[0,0].Position);
+        Marker3D closest = SquareMarkersArray[0,0];
+        float shortestDist = pos.DistanceTo(SquareMarkersArray[0,0].Position);
 
         int x = 0;
         int y = 0;
@@ -48,10 +48,10 @@ public partial class HighlightedSquare : Sprite3D
         {
             for (int j = 0; j < 8; j++)
             {
-                if (pos.DistanceTo(squareMarkers[i,j].Position) < shortestDist)
+                if (pos.DistanceTo(SquareMarkersArray[i,j].Position) < shortestDist)
                 {
-                    closest = squareMarkers[i,j];
-                    shortestDist = pos.DistanceTo(squareMarkers[i,j].Position);
+                    closest = SquareMarkersArray[i,j];
+                    shortestDist = pos.DistanceTo(SquareMarkersArray[i,j].Position);
                     x = j;
                     y = i;
                 }
@@ -78,9 +78,9 @@ public partial class HighlightedSquare : Sprite3D
                 SquareClicked?.Invoke(ChessPosition);
             }
 
-            float x = squareMarkers[ChessPosition.Y, ChessPosition.X].Position.X;
+            float x = SquareMarkersArray[ChessPosition.Y, ChessPosition.X].Position.X;
             float y = 0.112f;
-            float z = squareMarkers[ChessPosition.Y, ChessPosition.X].Position.Z;
+            float z = SquareMarkersArray[ChessPosition.Y, ChessPosition.X].Position.Z;
 
             Position = new Vector3(x, y, z);
         }
