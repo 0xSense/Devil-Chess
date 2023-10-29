@@ -62,7 +62,7 @@ public partial class PieceMovement : Sprite3D
     public override void _Process(double delta)
     {
         float x = squareMarkers[ChessPosition.Y, ChessPosition.X].Position.X;
-        float y = 0.215f;
+        float y = 0.19f;
         float z = squareMarkers[ChessPosition.Y, ChessPosition.X].Position.Z;
 
         Position = new Vector3(x, y, z);
