@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://me85wnqjyee8"]
+[gd_scene load_steps=39 format=3 uid="uid://me85wnqjyee8"]
 
 [ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
 [ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
@@ -18,6 +18,21 @@
 [ext_resource type="Texture2D" uid="uid://ljaip6qngxok" path="res://Assets/Pieces/Chesspiece_Knightblack.png" id="12_drdd1"]
 [ext_resource type="Texture2D" uid="uid://c00q2boamsmju" path="res://Assets/Pieces/Chesspiece_Pawnblack.png" id="15_wj81i"]
 [ext_resource type="Script" path="res://GameLogic/GameManager.cs" id="18_cq0eq"]
+[ext_resource type="Texture2D" uid="uid://b434ae4piiet2" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0001.png" id="19_n4epo"]
+[ext_resource type="Texture2D" uid="uid://c13hwyo8jh7ni" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0002.png" id="20_kvj0l"]
+[ext_resource type="Texture2D" uid="uid://wqgj2ygyg42w" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0003.png" id="21_5mm43"]
+[ext_resource type="Texture2D" uid="uid://c1d8ush3l01ax" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0004.png" id="22_cvh64"]
+[ext_resource type="Texture2D" uid="uid://t8dyslu5yh17" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0005.png" id="23_fcsaq"]
+[ext_resource type="Texture2D" uid="uid://c0naygbqymuy" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0006.png" id="24_iian8"]
+[ext_resource type="Texture2D" uid="uid://dyuq2o1iqvuqq" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0007.png" id="25_0swfk"]
+[ext_resource type="Texture2D" uid="uid://d23hgh4qxw126" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0008.png" id="26_8wy3m"]
+[ext_resource type="Texture2D" uid="uid://i2ypb60dchak" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0009.png" id="27_0t1ay"]
+[ext_resource type="Texture2D" uid="uid://b8r6f8ai7aigl" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0010.png" id="28_dbhu7"]
+[ext_resource type="Texture2D" uid="uid://cihblyq7o6k73" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0011.png" id="29_7q7o1"]
+[ext_resource type="Texture2D" uid="uid://babw0fb11w54p" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0012.png" id="30_ooqnb"]
+[ext_resource type="Texture2D" uid="uid://xynxi481u00c" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0013.png" id="31_dkany"]
+[ext_resource type="Texture2D" uid="uid://bgru1ag6fowye" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0014.png" id="32_4v0d0"]
+[ext_resource type="Texture2D" uid="uid://c6w7c5e0jwdeh" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0015.png" id="33_lclod"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
 sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
@@ -42,6 +57,59 @@ glow_enabled = true
 glow_intensity = 0.5
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_irws3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idnvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_n4epo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_kvj0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5mm43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_cvh64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fcsaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_iian8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_0swfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_8wy3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_0t1ay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_dbhu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_7q7o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ooqnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_dkany")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_4v0d0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_lclod")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="game_primary" type="Node3D"]
 script = ExtResource("1_oriiy")
@@ -528,3 +596,8 @@ SquareMarkers = NodePath("../SquareMarkers")
 
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("18_cq0eq")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466503, 0.683751, -2.02631)
+sprite_frames = SubResource("SpriteFrames_idnvd")
+frame_progress = 0.137889
