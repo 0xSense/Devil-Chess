@@ -329,6 +329,22 @@ shadow_blur = 0.1
 
 [node name="Pieces" type="Node3D" parent="."]
 
+[node name="B_Queen2" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.1056, 0.209, -0.6446)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("10_uoogu")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Queen2" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.00999971, 0, 7.71431e-05, 0, 0.01, 0, -7.71431e-05, 0, 0.00999971, -0.10555, 0.23642, 0.804954)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("5_37rof")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
 [node name="W_King" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.0918174, 0.214927, 0.731743)
 billboard = 1

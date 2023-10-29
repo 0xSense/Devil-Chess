@@ -31,7 +31,7 @@ public partial class GameManager : Node
         GetNode<HighlightedSquare>("/root/game_primary/HighlightedSquare").SquareClicked += HandleClick;
         Node3D piecesNode = GetNode<Node3D>("/root/game_primary/Pieces");
 
-        pieces = new PieceMovement[32];
+        pieces = new PieceMovement[34];
         int i = 0;
 
         // the horrorshow continues . . .
@@ -39,7 +39,7 @@ public partial class GameManager : Node
         knights = new int[4];
         bishops = new int[4];
         rooks = new int[4];
-        queens = new int[2];
+        queens = new int[4];
         kings = new int[2];
 
         int wPawnCount = 0;
@@ -84,8 +84,14 @@ public partial class GameManager : Node
                 case "W_Queen":
                 queens[0] = i;
                 break;
-                case "B_Queen":
+                case "W_Queen2":
                 queens[1] = i;
+                break;
+                case "B_Queen":
+                queens[2] = i;
+                break;
+                case "B_Queen2":
+                queens[3] = i;
                 break;
                 case "W_RRook":
                 rooks[0] = i;
@@ -226,6 +232,8 @@ public partial class GameManager : Node
         int wBishopCount = 0;
         int bRookCount = 0;
         int wRookCount = 0;
+        int bQueenCount = 0;
+        int wQueenCount = 0;
 
         foreach (PieceMovement piece in pieces)
         {
@@ -248,7 +256,8 @@ public partial class GameManager : Node
                     pMovement = pieces[kings[0]];                     
                     break;
                     case 'Q':
-                    pMovement = pieces[queens[0]];
+                    //pMovement = pieces[queens[0]];
+                    pMovement = pieces[queens[wQueenCount++]];
                     break;
                     case 'R':
                     pMovement = pieces[rooks[wRookCount++]];
@@ -267,7 +276,8 @@ public partial class GameManager : Node
                     pMovement = pieces[kings[1]];
                     break;
                     case 'q':
-                    pMovement = pieces[queens[1]];
+                    //pMovement = pieces[queens[1]];
+                    pMovement = pieces[queens[2+bQueenCount++]];
                     break;
                     case 'r':
                     pMovement = pieces[rooks[2+bRookCount++]];
