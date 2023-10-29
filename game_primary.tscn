@@ -335,8 +335,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("2_8e26k")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Queen" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.0962116, 0.214927, 0.731743)
@@ -344,8 +342,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("5_37rof")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_DSB" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.283888, 0.214927, 0.731743)
@@ -353,8 +349,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("6_u32oh")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_LSB" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.294364, 0.218978, 0.731743)
@@ -362,8 +356,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("6_u32oh")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_RKnight" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.477216, 0.218978, 0.731743)
@@ -371,8 +363,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("7_2nxdy")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_LKnight" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.471242, 0.218978, 0.731743)
@@ -380,8 +370,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("7_2nxdy")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_LRook" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.669981, 0.203356, 0.731743)
@@ -389,8 +377,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("8_sqpgd")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_RRook" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.673762, 0.203356, 0.731743)
@@ -398,8 +384,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("8_sqpgd")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_King" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.0918174, 0.214927, -0.586024)
@@ -407,8 +391,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_ymmx6")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Queen" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.096, 0.19, -0.586)
@@ -416,8 +398,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("10_uoogu")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_DSB" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.283888, 0.214927, -0.586024)
@@ -425,8 +405,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("11_p8f5x")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_LSB" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.294364, 0.218978, -0.586024)
@@ -434,8 +412,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("11_p8f5x")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_RKnight" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.477216, 0.218978, -0.586024)
@@ -443,8 +419,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("12_drdd1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_LKnight" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.471242, 0.218978, -0.586024)
@@ -452,8 +426,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("12_drdd1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_LRook" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.669981, 0.203356, -0.586024)
@@ -461,8 +433,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_1fiby")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_RRook" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.673762, 0.203356, -0.586024)
@@ -470,8 +440,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_1fiby")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn1" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.673762, 0.203356, 0.548353)
@@ -479,8 +447,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn2" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.481313, 0.203356, 0.548353)
@@ -488,8 +454,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn3" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.285635, 0.203356, 0.548353)
@@ -497,8 +461,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn4" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.0931864, 0.203356, 0.548353)
@@ -506,8 +468,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn5" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.0996495, 0.203356, 0.548353)
@@ -515,8 +475,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn6" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.292098, 0.203356, 0.548353)
@@ -524,8 +482,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn7" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.455456, 0.203356, 0.548353)
@@ -533,8 +489,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="W_Pawn8" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.647904, 0.203356, 0.548353)
@@ -542,8 +496,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("9_uvei1")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn1" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.673762, 0.203356, -0.385757)
@@ -551,8 +503,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn2" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.471377, 0.203356, -0.385757)
@@ -560,8 +510,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn3" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.278283, 0.203356, -0.385757)
@@ -569,8 +517,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn4" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.0758986, 0.203356, -0.385757)
@@ -578,8 +524,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn5" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.0953164, 0.203356, -0.385757)
@@ -587,8 +531,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn6" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.297701, 0.203356, -0.385757)
@@ -596,8 +538,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn7" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.470599, 0.203356, -0.385757)
@@ -605,8 +545,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="B_Pawn8" type="Sprite3D" parent="Pieces"]
 transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.672983, 0.203356, -0.385757)
@@ -614,8 +552,6 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("15_wj81i")
 script = ExtResource("3_5p22h")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="ChessLogicTester" type="Node3D" parent="."]
 script = ExtResource("4_kitv4")
@@ -625,8 +561,6 @@ transform = Transform3D(16, 0, 0, 0, -6.99382e-07, -16, 0, 16, -6.99382e-07, 0.0
 modulate = Color(0.411765, 0.576471, 0.0705882, 1)
 texture = SubResource("CanvasTexture_irws3")
 script = ExtResource("6_alf3k")
-SquareMarkers = Object(Node3D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
-
 
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("18_cq0eq")
