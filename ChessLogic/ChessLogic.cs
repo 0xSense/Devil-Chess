@@ -228,6 +228,7 @@ public static class ChessLogic
         }        
         
         GD.Print("Invalid move");
+        GD.Print(legalMoves.Count());
         return false;
     }
 
