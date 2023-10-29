@@ -1,0 +1,634 @@
+[gd_scene load_steps=41 format=3 uid="uid://me85wnqjyee8"]
+
+[ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
+[ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
+[ext_resource type="Texture2D" uid="uid://dqeycsdqdarkh" path="res://Assets/Pieces/Chesspiece_Kingwhite.png" id="2_8e26k"]
+[ext_resource type="Script" path="res://GameLogic/PieceMovement.cs" id="3_5p22h"]
+[ext_resource type="Script" path="res://Tester.cs" id="4_kitv4"]
+[ext_resource type="Texture2D" uid="uid://bte34wbg8glgv" path="res://Assets/Pieces/Chesspiece_Queenwhite.png" id="5_37rof"]
+[ext_resource type="Script" path="res://GameLogic/HighlightedSquare.cs" id="6_alf3k"]
+[ext_resource type="Texture2D" uid="uid://c7a7nota5powg" path="res://Assets/Pieces/Chesspiece_Bishopwhite.png" id="6_u32oh"]
+[ext_resource type="Texture2D" uid="uid://bpv7kg3yume6b" path="res://Assets/Pieces/Chesspiece_Knightwhite.png" id="7_2nxdy"]
+[ext_resource type="Texture2D" uid="uid://d3sg68oa6h44q" path="res://Assets/Pieces/Chesspiece_Rookwhite.png" id="8_sqpgd"]
+[ext_resource type="Texture2D" uid="uid://bkwvnebf16o3r" path="res://Assets/Pieces/Chesspiece_Rookblack.png" id="9_1fiby"]
+[ext_resource type="Texture2D" uid="uid://b1p682y4t5bme" path="res://Assets/Pieces/Chesspiece_Pawnwhite.png" id="9_uvei1"]
+[ext_resource type="Texture2D" uid="uid://c0fqb1r0yps4i" path="res://Assets/Pieces/Chesspiece_Kingblack.png" id="9_ymmx6"]
+[ext_resource type="Texture2D" uid="uid://cmduusm83yv7j" path="res://Assets/Pieces/Chesspiece_Queenblack.png" id="10_uoogu"]
+[ext_resource type="Texture2D" uid="uid://qdg4xp162hjl" path="res://Assets/Pieces/Chesspiece_Bishopblack.png" id="11_p8f5x"]
+[ext_resource type="Texture2D" uid="uid://ljaip6qngxok" path="res://Assets/Pieces/Chesspiece_Knightblack.png" id="12_drdd1"]
+[ext_resource type="Texture2D" uid="uid://c00q2boamsmju" path="res://Assets/Pieces/Chesspiece_Pawnblack.png" id="15_wj81i"]
+[ext_resource type="Script" path="res://GameLogic/GameManager.cs" id="18_cq0eq"]
+[ext_resource type="Texture2D" uid="uid://b434ae4piiet2" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0001.png" id="19_n4epo"]
+[ext_resource type="Texture2D" uid="uid://wqgj2ygyg42w" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0003.png" id="21_5mm43"]
+[ext_resource type="Texture2D" uid="uid://c1d8ush3l01ax" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0004.png" id="22_cvh64"]
+[ext_resource type="Texture2D" uid="uid://t8dyslu5yh17" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0005.png" id="23_fcsaq"]
+[ext_resource type="Texture2D" uid="uid://c0naygbqymuy" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0006.png" id="24_iian8"]
+[ext_resource type="Texture2D" uid="uid://dyuq2o1iqvuqq" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0007.png" id="25_0swfk"]
+[ext_resource type="Texture2D" uid="uid://d23hgh4qxw126" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0008.png" id="26_8wy3m"]
+[ext_resource type="Texture2D" uid="uid://i2ypb60dchak" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0009.png" id="27_0t1ay"]
+[ext_resource type="Texture2D" uid="uid://b8r6f8ai7aigl" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0010.png" id="28_dbhu7"]
+[ext_resource type="Texture2D" uid="uid://cihblyq7o6k73" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0011.png" id="29_7q7o1"]
+[ext_resource type="Texture2D" uid="uid://babw0fb11w54p" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0012.png" id="30_ooqnb"]
+[ext_resource type="Texture2D" uid="uid://xynxi481u00c" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0013.png" id="31_dkany"]
+[ext_resource type="Texture2D" uid="uid://bgru1ag6fowye" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0014.png" id="32_4v0d0"]
+[ext_resource type="Script" path="res://AnimationHandler.gd" id="33_g6fjv"]
+[ext_resource type="Texture2D" uid="uid://c6w7c5e0jwdeh" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0015.png" id="33_lclod"]
+[ext_resource type="AudioStream" uid="uid://docny78mhofy" path="res://Assets/Audio Assets/In_Game.mp3" id="34_kbxu1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
+sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
+sky_horizon_color = Color(0.470588, 0.694118, 0.772549, 1)
+ground_bottom_color = Color(0.25098, 0.129412, 0.2, 1)
+sun_angle_max = 52.19
+
+[sub_resource type="Sky" id="Sky_civef"]
+sky_material = SubResource("ProceduralSkyMaterial_w4hio")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_1s6ic"]
+background_mode = 2
+background_energy_multiplier = 0.71
+sky = SubResource("Sky_civef")
+ambient_light_energy = 0.0
+tonemap_mode = 3
+tonemap_exposure = 1.75
+tonemap_white = 5.0
+ssao_enabled = true
+glow_enabled = true
+glow_intensity = 0.5
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_irws3"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hc7dx"]
+viewport_path = NodePath("GameManager/Sprite3D/SubViewport")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idnvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_n4epo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5mm43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_cvh64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fcsaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_iian8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_0swfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_8wy3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_0t1ay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_dbhu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_7q7o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ooqnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_dkany")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_4v0d0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_lclod")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="game_primary" type="Node3D"]
+script = ExtResource("1_oriiy")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.887076, 0.461624, 0, -0.461624, 0.887076, -0.0705761, 2.10208, 2.55263)
+fov = 45.0
+
+[node name="Board" parent="." instance=ExtResource("1_fl1oh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00271, 0, 0.072)
+
+[node name="SquareMarkers" type="Node3D" parent="."]
+
+[node name="Square1" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.599603)
+
+[node name="Square2" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.599603)
+
+[node name="Square3" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.599603)
+
+[node name="Square4" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.599603)
+
+[node name="Square5" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.599603)
+
+[node name="Square6" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.599603)
+
+[node name="Square7" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.599603)
+
+[node name="Square8" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.599603)
+
+[node name="Square9" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.402617)
+
+[node name="Square10" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.402617)
+
+[node name="Square11" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.402617)
+
+[node name="Square12" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.402617)
+
+[node name="Square13" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.402617)
+
+[node name="Square14" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.402617)
+
+[node name="Square15" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.402617)
+
+[node name="Square16" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.402617)
+
+[node name="Square17" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.211952)
+
+[node name="Square18" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.211952)
+
+[node name="Square19" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.211952)
+
+[node name="Square20" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.211952)
+
+[node name="Square21" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.211952)
+
+[node name="Square22" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.211952)
+
+[node name="Square23" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.211952)
+
+[node name="Square24" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.211952)
+
+[node name="Square25" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, -0.0169868)
+
+[node name="Square26" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, -0.0169868)
+
+[node name="Square27" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, -0.0169868)
+
+[node name="Square28" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, -0.0169868)
+
+[node name="Square29" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, -0.0169868)
+
+[node name="Square30" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, -0.0169868)
+
+[node name="Square31" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, -0.0169868)
+
+[node name="Square32" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, -0.0169868)
+
+[node name="Square33" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.177979)
+
+[node name="Square34" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.177979)
+
+[node name="Square35" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.177979)
+
+[node name="Square36" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.177979)
+
+[node name="Square37" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.177979)
+
+[node name="Square38" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.177979)
+
+[node name="Square39" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.177979)
+
+[node name="Square40" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.177979)
+
+[node name="Square41" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.370077)
+
+[node name="Square42" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.370077)
+
+[node name="Square43" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.370077)
+
+[node name="Square44" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.370077)
+
+[node name="Square45" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.370077)
+
+[node name="Square46" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.370077)
+
+[node name="Square47" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.370077)
+
+[node name="Square48" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.370077)
+
+[node name="Square49" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.559308)
+
+[node name="Square50" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.559308)
+
+[node name="Square51" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.559308)
+
+[node name="Square52" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.559308)
+
+[node name="Square53" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.559308)
+
+[node name="Square54" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.559308)
+
+[node name="Square55" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.559308)
+
+[node name="Square56" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.559308)
+
+[node name="Square57" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675521, 0.20744, 0.748539)
+
+[node name="Square58" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.480389, 0.20744, 0.748539)
+
+[node name="Square59" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28887, 0.20744, 0.748539)
+
+[node name="Square60" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0964473, 0.20744, 0.748539)
+
+[node name="Square61" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950717, 0.20744, 0.748539)
+
+[node name="Square62" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288397, 0.20744, 0.748539)
+
+[node name="Square63" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.48082, 0.20744, 0.748539)
+
+[node name="Square64" type="Marker3D" parent="SquareMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676856, 0.20744, 0.748539)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1s6ic")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.762173, -0.606127, 0.227383, -0.465937, -0.269762, 0.842693, -0.44944, -0.748224, -0.488022, 0, 1.53022, 2.45613)
+light_color = Color(1, 0.898039, 0.917647, 1)
+light_energy = 1.5
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 0.1
+
+[node name="Pieces" type="Node3D" parent="."]
+
+[node name="W_King" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.0918174, 0.214927, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_8e26k")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Queen" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.0962116, 0.214927, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("5_37rof")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_DSB" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.283888, 0.214927, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("6_u32oh")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_LSB" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.294364, 0.218978, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("6_u32oh")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_RKnight" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.477216, 0.218978, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("7_2nxdy")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_LKnight" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.471242, 0.218978, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("7_2nxdy")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_LRook" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.669981, 0.203356, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("8_sqpgd")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_RRook" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.673762, 0.203356, 0.731743)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("8_sqpgd")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_King" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.0918174, 0.214927, -0.586024)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_ymmx6")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Queen" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.096, 0.19, -0.586)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("10_uoogu")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_DSB" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.283888, 0.214927, -0.586024)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("11_p8f5x")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_LSB" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.294364, 0.218978, -0.586024)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("11_p8f5x")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_RKnight" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.477216, 0.218978, -0.586024)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("12_drdd1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_LKnight" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.471242, 0.218978, -0.586024)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("12_drdd1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_LRook" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, -0.669981, 0.203356, -0.586024)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_1fiby")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_RRook" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.0999993, 0, 0.000385718, 0, 0.1, 0, -0.000385718, 0, 0.0999993, 0.673762, 0.203356, -0.586024)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_1fiby")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn1" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.673762, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn2" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.481313, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn3" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.285635, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn4" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.0931864, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn5" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.0996495, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn6" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.292098, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn7" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.455456, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="W_Pawn8" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.647904, 0.203356, 0.548353)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_uvei1")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn1" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.673762, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn2" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.471377, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn3" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.278283, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn4" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, 0.0758986, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn5" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.0953164, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn6" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.297701, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn7" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.470599, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="B_Pawn8" type="Sprite3D" parent="Pieces" node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(0.149999, 0, 0.000578576, 0, 0.15, 0, -0.000578576, 0, 0.149999, -0.672983, 0.203356, -0.385757)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("15_wj81i")
+script = ExtResource("3_5p22h")
+SquareMarkers = NodePath("../../SquareMarkers")
+
+[node name="ChessLogicTester" type="Node3D" parent="."]
+script = ExtResource("4_kitv4")
+
+[node name="HighlightedSquare" type="Sprite3D" parent="." node_paths=PackedStringArray("SquareMarkers")]
+transform = Transform3D(16, 0, 0, 0, -6.99382e-07, -16, 0, 16, -6.99382e-07, 0.0964625, 0.112484, -0.0248319)
+modulate = Color(0.411765, 0.576471, 0.0705882, 1)
+texture = SubResource("CanvasTexture_irws3")
+script = ExtResource("6_alf3k")
+SquareMarkers = NodePath("../SquareMarkers")
+
+[node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("18_cq0eq")
+
+[node name="Sprite3D" type="Sprite3D" parent="GameManager"]
+transform = Transform3D(0.1, 0, 0, 0, 0.0984026, 0.0824277, 0, -0.0178029, 0.455604, -0.793677, 1.51965, 1.32994)
+billboard = 1
+texture = SubResource("ViewportTexture_hc7dx")
+
+[node name="SubViewport" type="SubViewport" parent="GameManager/Sprite3D"]
+transparent_bg = true
+size = Vector2i(119, 20)
+render_target_update_mode = 1
+
+[node name="Label" type="Label" parent="GameManager/Sprite3D/SubViewport"]
+offset_right = 40.0
+offset_bottom = 26.0
+text = "Players Move"
+
+[node name="animation_node" type="Node3D" parent="."]
+script = ExtResource("33_g6fjv")
+
+[node name="Background" type="AnimatedSprite3D" parent="animation_node"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0256157, 0.613784, -1.97272)
+double_sided = false
+alpha_cut = 1
+sprite_frames = SubResource("SpriteFrames_idnvd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("34_kbxu1")
+volume_db = -8.0
+autoplay = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

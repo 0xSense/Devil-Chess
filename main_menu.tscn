@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bseenullji7qk"]
+[gd_scene load_steps=16 format=3 uid="uid://bm424atrui0ad"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8t10k"]
-[ext_resource type="Texture2D" uid="uid://crq51bnqg4e2u" path="res://Assets/Main Menu Assets/Title Screen no buttons.png" id="2_70s6w"]
 [ext_resource type="Texture2D" uid="uid://0xa4dil15t2d" path="res://Assets/Main Menu Assets/Play button.png" id="3_an50a"]
 [ext_resource type="Texture2D" uid="uid://drttlsi5etirl" path="res://Assets/Main Menu Assets/Ai Difficulty solo.png" id="3_rmuf3"]
 [ext_resource type="Texture2D" uid="uid://hstsojhcc0j6" path="res://Assets/Main Menu Assets/Blank button.png" id="3_sn4d1"]
@@ -13,14 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://dru101auu1bwq" path="res://Assets/Main Menu Assets/Hard solo yellow.png" id="11_jgesf"]
 [ext_resource type="Texture2D" uid="uid://cc31vcyr3vmuu" path="res://Assets/Main Menu Assets/Devil's advocate solo.png" id="12_ixl8e"]
 [ext_resource type="Script" path="res://OptionButton.gd" id="13_rcvuu"]
+[ext_resource type="Texture2D" uid="uid://1oe5rabbfgfb" path="res://Assets/Main Menu Assets/Music.png" id="14_tif3c"]
+[ext_resource type="PackedScene" uid="uid://bj4t4hej57o2l" path="res://background.tscn" id="15_j60x4"]
+[ext_resource type="Texture2D" uid="uid://e5ct0ltgxsr7" path="res://Assets/Main Menu Assets/Devil’s Chess Title.png" id="15_jxtry"]
 
 [node name="Main Menu" type="Node2D"]
 script = ExtResource("1_8t10k")
-
-[node name="TitleScreenNoButtons" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(0.8, 0.632813)
-texture = ExtResource("2_70s6w")
 
 [node name="AiDifficultySolo" type="Sprite2D" parent="."]
 position = Vector2(578, 352.75)
@@ -55,7 +52,6 @@ texture_pressed = ExtResource("6_qg8ct")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_q1nhd")
 autoplay = true
-bus = &"Music"
 
 [node name="OptionButton" type="OptionButton" parent="."]
 offset_left = 470.0
@@ -77,6 +73,18 @@ popup/item_2/text = ""
 popup/item_2/icon = ExtResource("12_ixl8e")
 popup/item_2/id = 1
 script = ExtResource("13_rcvuu")
+
+[node name="Music" type="Sprite2D" parent="."]
+position = Vector2(576, 461)
+scale = Vector2(0.816092, 0.636364)
+texture = ExtResource("14_tif3c")
+
+[node name="Devil’sChessTitle" type="Sprite2D" parent="."]
+position = Vector2(577.5, 161.5)
+scale = Vector2(0.806375, 0.648936)
+texture = ExtResource("15_jxtry")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("15_j60x4")]
 
 [connection signal="pressed" from="Play Button" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Toggle Music" to="." method="_on_toggle_music_pressed"]

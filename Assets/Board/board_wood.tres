@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://by1m8jhpy1o7t"]
+
+[ext_resource type="Texture2D" uid="uid://b8pbsyx2wccrf" path="res://Assets/Board/Board_TCom_Wood_ParquetHerringbone9_New_4K_albedo.png" id="1_kl8an"]
+[ext_resource type="Texture2D" uid="uid://brb1kio8lr0rt" path="res://Assets/Board/Board_BoardNormals.png" id="2_k8jyh"]
+[ext_resource type="Texture2D" uid="uid://cvo7ilk67bl2" path="res://Assets/Board/TCom_Wood_ParquetHerringbone9_New_4K_roughness.png" id="3_a0tpb"]
+
+[resource]
+albedo_texture = ExtResource("1_kl8an")
+roughness_texture = ExtResource("3_a0tpb")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("2_k8jyh")

@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil-Chess", "Devil-Chess.csproj", "{2F0FABEE-0523-40F9-9CDB-60C399AE6A8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil-Chess", "Devil-Chess.csproj", "{10276CCA-C6B5-42E0-B276-FFCFBE1B9AFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2F0FABEE-0523-40F9-9CDB-60C399AE6A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F0FABEE-0523-40F9-9CDB-60C399AE6A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F0FABEE-0523-40F9-9CDB-60C399AE6A8A}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{2F0FABEE-0523-40F9-9CDB-60C399AE6A8A}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{2F0FABEE-0523-40F9-9CDB-60C399AE6A8A}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{2F0FABEE-0523-40F9-9CDB-60C399AE6A8A}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{10276CCA-C6B5-42E0-B276-FFCFBE1B9AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10276CCA-C6B5-42E0-B276-FFCFBE1B9AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10276CCA-C6B5-42E0-B276-FFCFBE1B9AFB}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{10276CCA-C6B5-42E0-B276-FFCFBE1B9AFB}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{10276CCA-C6B5-42E0-B276-FFCFBE1B9AFB}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{10276CCA-C6B5-42E0-B276-FFCFBE1B9AFB}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

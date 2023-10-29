@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbkwsb5qwnggv"]
+
+[ext_resource type="AudioStream" uid="uid://cnofssvu7p8rk" path="res://Assets/Audio Assets/Win-001.mp3" id="1_qofv2"]
+
+[node name="game_won" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "YOU WON"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_qofv2")
+volume_db = -8.0
+autoplay = true

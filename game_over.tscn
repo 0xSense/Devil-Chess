@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwpvwm6ort6ei"]
+
+[ext_resource type="AudioStream" uid="uid://6ocjmras4htk" path="res://Assets/Audio Assets/Lose-001.mp3" id="1_i7cai"]
+
+[node name="game_over" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_i7cai")
+volume_db = -8.0
+autoplay = true
