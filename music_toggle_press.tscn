@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1wp821yr6o8w"]
+
+[ext_resource type="AudioStream" uid="uid://jvg4c7vyg5r1" path="res://Menu-005.mp3" id="1_gdi0i"]
+
+[node name="MusicTogglePress" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_gdi0i")

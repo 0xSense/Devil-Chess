@@ -15,3 +15,4 @@ vertical_alignment = 1
 stream = ExtResource("1_i7cai")
 volume_db = -8.0
 autoplay = true
+bus = &"Music"
