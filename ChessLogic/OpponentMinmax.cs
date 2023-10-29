@@ -109,6 +109,7 @@ static class LeafValues
 
 public class OpponentMinmax : IOpponent
 {
+    private static readonly int MAX_THREADS = (System.Environment.ProcessorCount-1);
     private bool shouldSubmit;
     private Move waitingMove;
     private bool currentTurn;
@@ -117,6 +118,7 @@ public class OpponentMinmax : IOpponent
     private static Dictionary<PieceTypes, int> pieceValues = new();
     private static int[] pieceValuesArray;
     private static int[,,] pieceValuesArrayArray;
+
 
     public OpponentMinmax(bool isWhite)
     {
@@ -280,7 +282,9 @@ public class OpponentMinmax : IOpponent
 
     private MoveEvalPair Minmax(Position pos, int depth, int alpha, int beta, bool maximizing, Move lastMove)
     {
+        
         int eval;
+        bool multithread = false;
 
         MoveList moves;
 
@@ -290,7 +294,7 @@ public class OpponentMinmax : IOpponent
             eval = pair.eval;
             return pair;                   
         }
-
+        
         else if (depth <= 0)
         {
             moves = pos.GenerateMoves(MoveGenerationType.Captures);
@@ -303,7 +307,14 @@ public class OpponentMinmax : IOpponent
         }
 
         else
+        {
+
             moves = pos.GenerateMoves();
+            if (lastMove == Move.EmptyMove)
+            {
+                multithread = true;
+            }               
+        }
 
         if (maximizing)
         {
@@ -312,8 +323,35 @@ public class OpponentMinmax : IOpponent
             MoveEvalPair bestPair = new MoveEvalPair();
             bestPair.eval = eval;
 
+            if (multithread)
+            {
+                Parallel.For(0, moves.Length, new ParallelOptions{MaxDegreeOfParallelism=MAX_THREADS}, (i, lState) =>
+                {
+                    Position currentPos = new Position(new Board(), new PieceValue());
+                    currentPos.Set(pos.GenerateFen(), ChessMode.Normal, new State(), true);
+                    
+                    currentPos.MakeMove(moves[i], new State());
+                    pair = Minmax(currentPos, depth-1, alpha, beta, !maximizing, moves[i]);
+                    currentPos.TakeMove(moves[i]);
+
+                    if (pair.eval > eval)
+                    {
+                        eval = pair.eval;
+                        bestPair = pair;
+                        bestPair.move = moves[i];
+                    }                                 
+
+
+                    if (eval >= beta)
+                        lState.Break();
+                    alpha = Mathf.Max(alpha, eval);
+                    }
+                );
+            }
+
             for (int i = 0; i < moves.Length; i++)
             {
+                
                 pos.MakeMove(moves[i], new State());
                 pair = Minmax(pos, depth-1, alpha, beta, !maximizing, moves[i]);
                 pos.TakeMove(moves[i]);
@@ -338,6 +376,31 @@ public class OpponentMinmax : IOpponent
             MoveEvalPair pair;
             MoveEvalPair bestPair = new MoveEvalPair();
             bestPair.eval = eval;
+
+            if (multithread)
+            {
+                Parallel.For(0, moves.Length, new ParallelOptions{MaxDegreeOfParallelism=MAX_THREADS}, (i, lState) =>
+                {
+                    Position currentPos = new Position(new Board(), new PieceValue());
+                    currentPos.Set(pos.GenerateFen(), ChessMode.Normal, new State(), true);
+
+                    currentPos.MakeMove(moves[i], new State());
+                    pair = Minmax(currentPos, depth-1, alpha, beta, !maximizing, moves[i]);
+                    currentPos.TakeMove(moves[i]);
+
+                    if (pair.eval < eval)
+                    {
+                        eval = pair.eval;
+                        bestPair = pair;
+                        bestPair.move = moves[i];
+                    }
+
+                    if (eval <= alpha)
+                        lState.Break();
+                        
+                    beta = Mathf.Min(beta, eval);
+                });
+            }
 
             for (int i = 0; i < moves.Length; i++)
             {
@@ -370,7 +433,7 @@ public class OpponentMinmax : IOpponent
         System.Diagnostics.Stopwatch timer = new();
         Move move = Move.EmptyMove;
 
-        int maxTime = 1000;
+        int maxTime = 2000;
 
         int i = 0;
 
