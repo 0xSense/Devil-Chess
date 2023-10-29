@@ -17,12 +17,12 @@ Quick overview of the code you need to worry about as a gameplay programmer:
 GameState - struct representing the state of the chess game including piece positions;
 SimpleMove - struct representing a single move (returned by ChessLogic.GetLegalMoves())
 ChessLogic - Static class which contains all methods you may need to call:
-    ChessLogic.ReverseColors() - Switches who is playing white and who is playing black (human defaults to white);
-    ChessLogic.GetBoardState() -> GameState - Returns current state of the board as GameState instance;
-    ChessLogic.SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow) - Call this to tell my code when the player has moved a piece in the game world. This function will only apply the move if it is legal and will return false otherwise.
-    ChessLogic.GetLegalMoves() -> List<SimpleMove> - Returns all legal moves in current position. Useful for highlighting legal moves for player.
-    ChessLogic.NewGame(bool humanIsWhite) - Starts new game. Call this before any other functions but *after* registering a function with the AIMoveFinished event.
-    ChessLogic.AIMoveFinished - C# event which is invoked when the AI makes a move. Assign at least one callback before calling any other ChessLogic method.
+	ChessLogic.ReverseColors() - Switches who is playing white and who is playing black (human defaults to white);
+	ChessLogic.GetBoardState() -> GameState - Returns current state of the board as GameState instance;
+	ChessLogic.SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow) - Call this to tell my code when the player has moved a piece in the game world. This function will only apply the move if it is legal and will return false otherwise.
+	ChessLogic.GetLegalMoves() -> List<SimpleMove> - Returns all legal moves in current position. Useful for highlighting legal moves for player.
+	ChessLogic.NewGame(bool humanIsWhite) - Starts new game. Call this before any other functions but *after* registering a function with the AIMoveFinished event.
+	ChessLogic.AIMoveFinished - C# event which is invoked when the AI makes a move. Assign at least one callback before calling any other ChessLogic method.
 */
 
 // Simple representation of a move based on to and from squares
