@@ -90,6 +90,7 @@ public class OpponentMinmax : IOpponent
         // Standard eval
         foreach (Piece p in pos.Board)
         {
+            
             colorMultiplier = p.IsWhite ? 1 : -1;
             switch (p.Type())
             {
@@ -122,7 +123,9 @@ public class OpponentMinmax : IOpponent
 
         if (depth == 0)
         {
-            return new MoveEvalPair(EvalLeaf(pos), lastMove);
+            MoveEvalPair pair = new MoveEvalPair(EvalLeaf(pos), lastMove);
+            eval = pair.eval;
+            return pair;
         }
         if (maximizing)
         {
@@ -130,6 +133,7 @@ public class OpponentMinmax : IOpponent
             MoveList moves = pos.GenerateMoves(); // SLOW - allocates memory; change this to be in place?
             MoveEvalPair pair;
             MoveEvalPair bestPair = new MoveEvalPair();
+            bestPair.eval = eval;
 
             for (int i = 0; i < moves.Length; i++)
             {
@@ -156,6 +160,7 @@ public class OpponentMinmax : IOpponent
             MoveList moves = pos.GenerateMoves(); // SLOW - allocates memory; change this to be in place?
             MoveEvalPair pair;
             MoveEvalPair bestPair = new MoveEvalPair();
+            bestPair.eval = eval;
 
             for (int i = 0; i < moves.Length; i++)
             {
@@ -181,19 +186,21 @@ public class OpponentMinmax : IOpponent
     private void SearchAndSubmit(Position pos, bool isWhite)
     {
         // TODO: Iterative deepening
-        GD.Print("FIrst: ", pos.SideToMove == Player.White);
         Position currentPos = new Position(new Board(), new PieceValue());
         currentPos.Set(pos.GenerateFen(), ChessMode.Normal, new State(), true);
-        GD.Print("Second: ", currentPos.SideToMove == Player.White);
-
-        foreach (Move m in currentPos.GenerateMoves())
-        {
-            GD.Print(m);
-        }
-
-        MoveEvalPair result = Minmax(currentPos, 4, float.NegativeInfinity, float.PositiveInfinity, isWhite, Move.EmptyMove);
-        GD.Print("Eval: " + result.eval);        
+        
+        System.Diagnostics.Stopwatch timer = new();
+        timer.Start();
+        MoveEvalPair result = Minmax(currentPos, 5, float.NegativeInfinity, float.PositiveInfinity, isWhite, Move.EmptyMove);
+        timer.Stop();
+        
         Move move = result.move;
+
+        GD.Print("------\n");
+        GD.Print("Calculation time: " + timer.ElapsedMilliseconds / 1000f);
+        GD.Print("Eval: " + result.eval);
+        GD.Print("Move: ", move.ToString());
+        GD.Print("------\n");
 
         ChessLogic.SubmitComputerMove(move);
 
