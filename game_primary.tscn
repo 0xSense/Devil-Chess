@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://me85wnqjyee8"]
+[gd_scene load_steps=40 format=3 uid="uid://me85wnqjyee8"]
 
 [ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
 [ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bgru1ag6fowye" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0014.png" id="32_4v0d0"]
 [ext_resource type="Script" path="res://AnimationHandler.gd" id="33_g6fjv"]
 [ext_resource type="Texture2D" uid="uid://c6w7c5e0jwdeh" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0015.png" id="33_lclod"]
+[ext_resource type="AudioStream" uid="uid://docny78mhofy" path="res://Assets/Audio Assets/In_Game.mp3" id="34_kbxu1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
 sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
@@ -599,11 +600,11 @@ script = ExtResource("33_g6fjv")
 
 [node name="Background" type="AnimatedSprite3D" parent="animation_node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0256157, 0.613784, -1.97272)
-cast_shadow = 0
-gi_mode = 2
 double_sided = false
 alpha_cut = 1
-texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_idnvd")
-frame = 5
-frame_progress = 0.817986
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("34_kbxu1")
+volume_db = -10.0
+autoplay = true
