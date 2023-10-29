@@ -132,6 +132,22 @@ public static class ChessLogic
         AI = new OpponentMinmax(!humanIsWhite);
     }
 
+    public static void NewGame(bool humanIsWhite, String fen)
+    {
+        if (AIMoveFinished == null)
+        {
+            throw new Exception("ERROR: You must subscribe a function to AIMoveNotify event before starting a new game.");
+        }
+        else
+        {
+            readableState = new GameState();
+            game = (Game)GameFactory.Create(fen);        
+        }
+
+        human = new HumanPlayer(humanIsWhite);
+        AI = new OpponentMinmax(!humanIsWhite);
+    }
+
     // By default, the human plays white; this function inverts that.
     public static void ReverseColors()
     {

@@ -7,13 +7,15 @@ using System.Threading;
 using Microsoft.VisualBasic;
 using System.Runtime.CompilerServices;
 using Rudzoft.ChessLib.Enums;
+using System.Collections;
+using System.Collections.Generic;
 
 struct MoveEvalPair
 {
-    public float eval;
+    public int eval;
     public Move move;
 
-    public MoveEvalPair(float e, Move m)
+    public MoveEvalPair(int e, Move m)
     {
         eval = e;
         move = m;
@@ -21,31 +23,53 @@ struct MoveEvalPair
 
     public MoveEvalPair()
     {
-        eval = 0f;
+        eval = 0;
         move = Move.EmptyMove;
     }
 }
 
 static class LeafValues
 {
-    public const float KingValue = float.PositiveInfinity;
-    public const float QueenValue = 9.25f;
-    public const float RookValue = 5f;
-    public const float BishopValue = 3.3f;
-    public const float KnightValue = 3f;
-    public const float PawnValue = 1f;
+    public const int KingValue = 0;
+    public const int QueenValue = 925;
+    public const int RookValue = 500;
+    public const int BishopValue = 330;
+    public const int KnightValue = 300;
+    public const int PawnValue = 100;
+
+    
 
 }
 
-public class OpponentMinmax : IOpponent
+public unsafe class OpponentMinmax : IOpponent
 {
     private bool currentTurn;
     private bool isWhite;
+
+    private static Dictionary<PieceTypes, int> pieceValues = new();
+    private static int[] pieceValuesArray;
 
     public OpponentMinmax(bool isWhite)
     {
         currentTurn = isWhite;
         this.isWhite = isWhite;
+
+        pieceValues.Clear();
+        pieceValues.Add(PieceTypes.Queen, LeafValues.QueenValue);
+        pieceValues.Add(PieceTypes.Rook, LeafValues.RookValue);
+        pieceValues.Add(PieceTypes.Bishop, LeafValues.BishopValue);
+        pieceValues.Add(PieceTypes.Knight, LeafValues.KnightValue);
+        pieceValues.Add(PieceTypes.Pawn, LeafValues.PawnValue);
+        pieceValues.Add(PieceTypes.King, LeafValues.KingValue);
+
+        pieceValuesArray = new int[7];
+        pieceValuesArray[(int)PieceTypes.Queen] = LeafValues.QueenValue;
+        pieceValuesArray[(int)PieceTypes.Rook] = LeafValues.RookValue;
+        pieceValuesArray[(int)PieceTypes.Bishop] = LeafValues.BishopValue;
+        pieceValuesArray[(int)PieceTypes.Knight] = LeafValues.KnightValue;
+        pieceValuesArray[(int)PieceTypes.Pawn] = LeafValues.PawnValue;
+        pieceValuesArray[(int)PieceTypes.King] = LeafValues.KingValue;
+
     }
 
     private Move GetMove(Position pos)
@@ -67,31 +91,50 @@ public class OpponentMinmax : IOpponent
         new Thread(ThreadStart).Start();    
     }
 
-    private float EvalLeaf(Position pos)
+    // EvalLeaf() variables moved out of function for
+    
+
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private unsafe int EvalLeaf(Position pos)
     {
+        
         // Handles checkmate & stalemate
         if (pos.IsMate)
         {
             if (!pos.InCheck)
-                return 0.0f;
+                return 0;
             if (pos.SideToMove == Player.White)
             {
-                return float.NegativeInfinity;
+                return -100000;
             }
             else
             {
-                return float.PositiveInfinity;
+                return 100000;
             }
         }
 
         int colorMultiplier = 1;
-        float eval = 0.0f;
+        int eval = 0;
+
+        Piece[] pieces = pos.Board.GetPieceArray();
+        int count = pieces.Length;
+        Piece p;
+        int i = 0;
+
+        bool white;
+        bool black;
 
         // Standard eval
-        foreach (Piece p in pos.Board)
+        while (i < count)
         {
-            
-            colorMultiplier = p.IsWhite ? 1 : -1;
+            p = pieces[i];
+            white = p.IsWhite;
+            black = !white;
+            colorMultiplier = (1 * (*(SByte*)&white)) + (-1 * (*(SByte*)&black)); 
+            //colorMultiplier = p.IsWhite ? 1 : -1;
+
+            /*
             switch (p.Type())
             {
                 case PieceTypes.Queen:
@@ -111,15 +154,18 @@ public class OpponentMinmax : IOpponent
                     break;                
                 default:
                     break;
-            }
+            }*/
+            //eval += pieceValues.GetValueOrDefault(p.Type()) * colorMultiplier;
+            eval += pieceValuesArray[(int)p.Type()] * colorMultiplier;
+            i++;
         }
 
         return eval;
     }
 
-    private MoveEvalPair Minmax(Position pos, int depth, float alpha, float beta, bool maximizing, Move lastMove)
+    private MoveEvalPair Minmax(Position pos, int depth, int alpha, int beta, bool maximizing, Move lastMove)
     {
-        float eval;
+        int eval;
 
         if (depth == 0)
         {
@@ -129,7 +175,7 @@ public class OpponentMinmax : IOpponent
         }
         if (maximizing)
         {
-            eval = float.NegativeInfinity;
+            eval = -100000; //float.NegativeInfinity;
             MoveList moves = pos.GenerateMoves(); // SLOW - allocates memory; change this to be in place?
             MoveEvalPair pair;
             MoveEvalPair bestPair = new MoveEvalPair();
@@ -146,7 +192,8 @@ public class OpponentMinmax : IOpponent
                     eval = pair.eval;
                     bestPair = pair;
                     bestPair.move = moves[i];
-                }                                
+                }                                 
+
 
                 if (eval >= beta)
                     break;
@@ -156,7 +203,7 @@ public class OpponentMinmax : IOpponent
         }
         else
         {
-            eval = float.PositiveInfinity;
+            eval = 100000; //float.PositiveInfinity;
             MoveList moves = pos.GenerateMoves(); // SLOW - allocates memory; change this to be in place?
             MoveEvalPair pair;
             MoveEvalPair bestPair = new MoveEvalPair();
@@ -177,6 +224,7 @@ public class OpponentMinmax : IOpponent
 
                 if (eval <= alpha)
                     break;
+                    
                 beta = Mathf.Min(beta, eval);
             }
             return bestPair;
@@ -191,7 +239,7 @@ public class OpponentMinmax : IOpponent
         
         System.Diagnostics.Stopwatch timer = new();
         timer.Start();
-        MoveEvalPair result = Minmax(currentPos, 5, float.NegativeInfinity, float.PositiveInfinity, isWhite, Move.EmptyMove);
+        MoveEvalPair result = Minmax(currentPos, 5, -100000, 100000, isWhite, Move.EmptyMove);
         timer.Stop();
         
         Move move = result.move;

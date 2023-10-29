@@ -185,6 +185,11 @@ public sealed class Board : IBoard
         }
     }
 
+    public Piece[] GetPieceArray()
+    {
+        return _pieces;
+    }
+
     IEnumerator IEnumerable.GetEnumerator()
         => GetEnumerator();
 }
