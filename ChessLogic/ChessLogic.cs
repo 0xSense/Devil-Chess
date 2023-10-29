@@ -309,7 +309,8 @@ public static class ChessLogic
         }
 
         state.GameOver = !(game.Pos.GenerateMoves().Length > 0);
-        state.WhiteToMove = game.Pos.SideToMove == Player.White;
+        state.WhiteToMove = (game.Pos.SideToMove == Player.White);
+
         state.HumanIsWhite = humanIsWhite;
 
         readableState = state;

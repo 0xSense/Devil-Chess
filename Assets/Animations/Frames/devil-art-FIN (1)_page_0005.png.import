@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://t8dyslu5yh17"
-path.s3tc="res://.godot/imported/devil-art-FIN (1)_page_0005.png-4cee8c7006b8bb8ec83d42df930793df.s3tc.ctex"
+path="res://.godot/imported/devil-art-FIN (1)_page_0005.png-4cee8c7006b8bb8ec83d42df930793df.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0005.png"
-dest_files=["res://.godot/imported/devil-art-FIN (1)_page_0005.png-4cee8c7006b8bb8ec83d42df930793df.s3tc.ctex"]
+dest_files=["res://.godot/imported/devil-art-FIN (1)_page_0005.png-4cee8c7006b8bb8ec83d42df930793df.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
