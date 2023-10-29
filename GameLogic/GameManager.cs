@@ -224,6 +224,11 @@ public partial class GameManager : Node
 
     private void RefreshBoard()
     {
+        if (state.HumanIsWhite == state.WhiteToMove)
+            GetNode<Label3D>("Label3D").Text = "Player's Move";
+        else
+            GetNode<Label3D>("Label3D").Text = "Enemy's Move";
+
         int bPawnCount = 0;
         int wPawnCount = 0;
         int bKnightCount = 0;

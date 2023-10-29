@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://me85wnqjyee8"]
+[gd_scene load_steps=40 format=3 uid="uid://me85wnqjyee8"]
 
 [ext_resource type="PackedScene" uid="uid://u27wx33sdxkr" path="res://Assets/Board/board_asset.tscn" id="1_fl1oh"]
 [ext_resource type="Script" path="res://GameLogic/LoadSignaller.cs" id="1_oriiy"]
@@ -58,9 +58,6 @@ glow_enabled = true
 glow_intensity = 0.5
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_irws3"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_hc7dx"]
-viewport_path = NodePath("GameManager/Sprite3D/SubViewport")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_idnvd"]
 animations = [{
@@ -614,20 +611,9 @@ SquareMarkers = NodePath("../SquareMarkers")
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("18_cq0eq")
 
-[node name="Sprite3D" type="Sprite3D" parent="GameManager"]
-transform = Transform3D(0.1, 0, 0, 0, 0.0984026, 0.0824277, 0, -0.0178029, 0.455604, -0.793677, 1.51965, 1.32994)
-billboard = 1
-texture = SubResource("ViewportTexture_hc7dx")
-
-[node name="SubViewport" type="SubViewport" parent="GameManager/Sprite3D"]
-transparent_bg = true
-size = Vector2i(119, 20)
-render_target_update_mode = 1
-
-[node name="Label" type="Label" parent="GameManager/Sprite3D/SubViewport"]
-offset_right = 40.0
-offset_bottom = 26.0
-text = "Players Move"
+[node name="Label3D" type="Label3D" parent="GameManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08502, 0.958995, 0)
+text = "Player's Move"
 
 [node name="animation_node" type="Node3D" parent="."]
 script = ExtResource("33_g6fjv")
