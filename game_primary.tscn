@@ -600,4 +600,4 @@ script = ExtResource("18_cq0eq")
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466503, 0.683751, -2.02631)
 sprite_frames = SubResource("SpriteFrames_idnvd")
-frame_progress = 0.137889
+frame_progress = 0.628127
