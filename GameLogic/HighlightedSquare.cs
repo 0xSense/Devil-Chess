@@ -27,7 +27,7 @@ public partial class HighlightedSquare : Sprite3D
                 y = i/8;
 
                 squareMarkers[y,x] = SquareMarkers.GetChild<Marker3D>(i);
-                GD.Print(x + " " + y);
+                //GD.Print(x + " " + y);
             }
         }
 

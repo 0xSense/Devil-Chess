@@ -129,7 +129,7 @@ public static class ChessLogic
         }
 
         human = new HumanPlayer(humanIsWhite);
-        AI = new OpponentStupid(!humanIsWhite);
+        AI = new OpponentMinmax(!humanIsWhite);
     }
 
     // By default, the human plays white; this function inverts that.

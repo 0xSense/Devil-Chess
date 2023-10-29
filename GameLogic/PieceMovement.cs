@@ -27,7 +27,6 @@ public partial class PieceMovement : Sprite3D
                 y = i/8;
 
                 squareMarkers[y,x] = SquareMarkers.GetChild<Marker3D>(i);
-                GD.Print(x + " " + y);
             }
         }
 
