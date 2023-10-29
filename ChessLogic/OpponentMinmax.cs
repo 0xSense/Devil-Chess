@@ -10,6 +10,7 @@ using Rudzoft.ChessLib.Enums;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 struct MoveEvalPair
 {
@@ -115,6 +116,7 @@ public class OpponentMinmax : IOpponent
 
     private static Dictionary<PieceTypes, int> pieceValues = new();
     private static int[] pieceValuesArray;
+    private static int[,,] pieceValuesArrayArray;
 
     public OpponentMinmax(bool isWhite)
     {
@@ -137,8 +139,45 @@ public class OpponentMinmax : IOpponent
         pieceValuesArray[(int)PieceTypes.Pawn] = LeafValues.PawnValue;
         pieceValuesArray[(int)PieceTypes.King] = LeafValues.KingValue;
 
+        pieceValuesArrayArray = new int[2,7,64];
+
+        void populateRow(int[] vals, int color, int row, int[,,] arr3D, bool flip)
+        {
+            if (!flip)
+            {
+                for (int i = 0; i < vals.Length; i++)
+                {
+                    arr3D[color, row, i] = vals[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < vals.Length; i++)
+                {
+                    arr3D[color, row, i] = -vals[63-i];
+                }
+            }
+        }
+
+        //pieceValuesArrayArray = new int[7][];
+        //pieceValuesArrayArray[0] = LeafValues.QueenValues;
+        populateRow(LeafValues.QueenValues, 0, (int)PieceTypes.Queen, pieceValuesArrayArray, false);
+        populateRow(LeafValues.RookValues, 0, (int)PieceTypes.Rook, pieceValuesArrayArray, false);
+        populateRow(LeafValues.BishopValues, 0, (int)PieceTypes.Bishop, pieceValuesArrayArray, false);
+        populateRow(LeafValues.KnightValues, 0, (int)PieceTypes.Knight, pieceValuesArrayArray, false);
+        populateRow(LeafValues.PawnValues, 0, (int)PieceTypes.Pawn, pieceValuesArrayArray, false);
+        populateRow(LeafValues.KingValues, 0, (int)PieceTypes.King, pieceValuesArrayArray, false);
+
+        populateRow(LeafValues.QueenValues, 1, (int)PieceTypes.Queen, pieceValuesArrayArray, true);
+        populateRow(LeafValues.RookValues, 1, (int)PieceTypes.Rook, pieceValuesArrayArray, true);
+        populateRow(LeafValues.BishopValues, 1, (int)PieceTypes.Bishop, pieceValuesArrayArray, true);
+        populateRow(LeafValues.KnightValues, 1, (int)PieceTypes.Knight, pieceValuesArrayArray, true);
+        populateRow(LeafValues.PawnValues, 1, (int)PieceTypes.Pawn, pieceValuesArrayArray, true);
+        populateRow(LeafValues.KingValues, 1, (int)PieceTypes.King, pieceValuesArrayArray, true);
 
     }
+
+
 
     public async void BeginPonder()
     {
@@ -195,15 +234,17 @@ public class OpponentMinmax : IOpponent
 
         int square;
 
-        Piece[] pieces = pos.Board.GetPieceArray();
-        int count = pieces.Length;
+        //Piece[] pieces = pos.Board.GetPieceArray();
+        //int count = pieces.Length;
         Piece p;
-        int i = 0;
+        //int i = 0;
 
         bool white;
         bool black;
 
         // Standard eval
+        
+        /*
         while (i < count)
         {
             p = pieces[i];
@@ -216,6 +257,24 @@ public class OpponentMinmax : IOpponent
             i++;
         }
 
+        */
+        BitBoard bPieces = pos.Board.Pieces();
+
+        int[] arr;        
+
+        
+        while (bPieces)
+        {            
+            Square sq = BitBoards.PopLsb(ref bPieces);
+            p = pos.GetPiece(sq);
+
+            black = !p.IsWhite;            
+        
+            eval = eval + pieceValuesArrayArray[ (int)(*(SByte*)&black), (int)p.Type(), sq.AsInt()]; //arr[sq.AsInt()]            
+        }
+        
+        //GD.Print(eval);
+        
         return eval;
     }
 
@@ -223,16 +282,32 @@ public class OpponentMinmax : IOpponent
     {
         int eval;
 
-        if (depth == 0)
-        {
+        MoveList moves;
+
+        if (depth <= 0)
+        {    
             MoveEvalPair pair = new MoveEvalPair(EvalLeaf(pos), lastMove);
             eval = pair.eval;
-            return pair;
+            return pair;                   
         }
+
+        else if (depth <= 0)
+        {
+            moves = pos.GenerateMoves(MoveGenerationType.Captures);
+            if (moves.Count() == 0)
+            {
+                MoveEvalPair pair = new MoveEvalPair(EvalLeaf(pos), lastMove);
+                eval = pair.eval;
+                return pair;
+            }
+        }
+
+        else
+            moves = pos.GenerateMoves();
+
         if (maximizing)
         {
             eval = -100000; //float.NegativeInfinity;
-            MoveList moves = pos.GenerateMoves(); // SLOW - allocates memory; change this to be in place?
             MoveEvalPair pair;
             MoveEvalPair bestPair = new MoveEvalPair();
             bestPair.eval = eval;
@@ -260,7 +335,6 @@ public class OpponentMinmax : IOpponent
         else
         {
             eval = 100000; //float.PositiveInfinity;
-            MoveList moves = pos.GenerateMoves(); // SLOW - allocates memory; change this to be in place?
             MoveEvalPair pair;
             MoveEvalPair bestPair = new MoveEvalPair();
             bestPair.eval = eval;
@@ -294,17 +368,33 @@ public class OpponentMinmax : IOpponent
         currentPos.Set(pos.GenerateFen(), ChessMode.Normal, new State(), true);
         
         System.Diagnostics.Stopwatch timer = new();
-        timer.Start();
-        MoveEvalPair result = Minmax(currentPos, 5, -100000, 100000, isWhite, Move.EmptyMove);
-        timer.Stop();
-        
-        Move move = result.move;
+        Move move = Move.EmptyMove;
 
-        GD.Print("------\n");
-        GD.Print("Calculation time: " + timer.ElapsedMilliseconds / 1000f);
-        GD.Print("Eval: " + result.eval);
-        GD.Print("Move: ", move.ToString());
-        GD.Print("------\n");
+        int maxTime = 1000;
+
+        int i = 0;
+
+        while (timer.ElapsedMilliseconds < maxTime)
+        {
+            ++i;
+            //timer.Reset();
+            timer.Start();
+            MoveEvalPair result = Minmax(currentPos, i, -100000, 100000, isWhite, Move.EmptyMove);
+            timer.Stop();
+
+            move = result.move;
+
+            GD.Print("------\n");
+            GD.Print("Current eval: " + EvalLeaf(pos));
+            GD.Print("Depth: " + i);
+            GD.Print("Calculation time: " + timer.ElapsedMilliseconds / 1000f);
+            GD.Print("Eval: " + result.eval);
+            GD.Print("Move: ", move.ToString());
+            GD.Print("------\n");
+        }
+
+        GD.Print("Total time: " + timer.ElapsedMilliseconds / 1000f);
+        
 
         shouldSubmit = true;
         waitingMove = move;
