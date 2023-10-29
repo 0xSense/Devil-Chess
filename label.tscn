@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b3uml2brjn4v6"]
+
+[node name="Label" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "U suck"

@@ -180,14 +180,16 @@ public partial class GameManager : Node
         else
             queuedSquare = algebraic;
 
+        state.BlackChecked = true;
+        state.GameOver = true;
         if (state.GameOver) {
             if(state.BlackChecked) {
                 GD.Print("YOU WON!!!");
-                var scene = GD.Load<PackedScene>("res://game_won.tscn"); 
+                var scene = GD.Load<PackedScene>("res://label.tscn"); 
                 GetTree().ChangeSceneToPacked(scene);
             } else if(state.WhiteChecked) {
                 GD.Print("GAME OVER!!!");
-                var scene = GD.Load<PackedScene>("res://game_over.tscn"); 
+                var scene = GD.Load<PackedScene>("res://label.tscn"); 
                 GetTree().ChangeSceneToPacked(scene);
             }
         }
@@ -206,11 +208,11 @@ public partial class GameManager : Node
         if (state.GameOver) {
             if(state.BlackChecked) {
                 GD.Print("YOU WON!!!");
-                var scene = GD.Load<PackedScene>("res://game_won.tscn"); 
+                var scene = GD.Load<PackedScene>("res://label.tscn"); 
                 GetTree().ChangeSceneToPacked(scene);
             } else if(state.WhiteChecked) {
                 GD.Print("GAME OVER!!!");
-                var scene = GD.Load<PackedScene>("res://game_over.tscn"); 
+                var scene = GD.Load<PackedScene>("res://label.tscn"); 
                 GetTree().ChangeSceneToPacked(scene);
             }
         }
