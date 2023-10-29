@@ -600,4 +600,5 @@ script = ExtResource("33_g6fjv")
 [node name="Background" type="AnimatedSprite3D" parent="animation_node"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0256157, 0.613784, -1.97272)
 double_sided = false
+alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_idnvd")
