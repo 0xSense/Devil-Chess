@@ -17,7 +17,7 @@ func _process(delta):
 func _on_texture_button_pressed():
 
 	PlayButtonPress.play()
-	get_tree().change_scene_to_file("res://chess_board.tscn")
+	get_tree().change_scene_to_file("res://game_primary.tscn")
 
 var music_bus = AudioServer.get_bus_index("Music")
 
