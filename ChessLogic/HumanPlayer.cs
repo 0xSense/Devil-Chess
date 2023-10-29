@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Rudzoft.ChessLib;
 using Rudzoft.ChessLib.Types;
 
@@ -25,8 +26,13 @@ public class HumanPlayer : IPlayer
 		currentTurn = !currentTurn;
 	}
 
-	public void BeginWait()
-	{
-		currentTurn = false;
-	}
+    public void BeginWait()
+    {
+        currentTurn = false;
+    }
+
+    public void EndWait()
+    {
+        currentTurn = true;
+    }
 }

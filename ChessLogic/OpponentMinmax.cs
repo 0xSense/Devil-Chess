@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using Rudzoft.ChessLib.Enums;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 struct MoveEvalPair
 {
@@ -41,8 +42,10 @@ static class LeafValues
 
 }
 
-public unsafe class OpponentMinmax : IOpponent
+public class OpponentMinmax : IOpponent
 {
+    private bool shouldSubmit;
+    private Move waitingMove;
     private bool currentTurn;
     private bool isWhite;
 
@@ -70,25 +73,34 @@ public unsafe class OpponentMinmax : IOpponent
         pieceValuesArray[(int)PieceTypes.Pawn] = LeafValues.PawnValue;
         pieceValuesArray[(int)PieceTypes.King] = LeafValues.KingValue;
 
+
     }
 
-    private Move GetMove(Position pos)
-    {
-        MoveList moves = pos.GenerateMoves();
-        
-        return moves[new Random().Next(moves.Length)];
-    }
-
-    public void BeginPonder()
+    public async void BeginPonder()
     {
         currentTurn = true;
         GD.Print("Pondering");
 
         void ThreadStart()
         {
-            SearchAndSubmit(ChessLogic.GetPos(), this.isWhite);
+            SearchAndFlagSubmit(ChessLogic.GetPos(), this.isWhite);
         }
         new Thread(ThreadStart).Start();    
+
+        //await Task.Run(() => SubmitMove());
+        
+        while (!shouldSubmit)
+        {
+            await Task.Delay(100);
+        }
+        SubmitMove();
+    }
+
+    private void SubmitMove()
+    {
+        ChessLogic.SubmitComputerMove(waitingMove);
+        waitingMove = Move.EmptyMove;
+        shouldSubmit = false;
     }
 
     // EvalLeaf() variables moved out of function for
@@ -231,7 +243,7 @@ public unsafe class OpponentMinmax : IOpponent
         }
     }
 
-    private void SearchAndSubmit(Position pos, bool isWhite)
+    private void SearchAndFlagSubmit(Position pos, bool isWhite)
     {
         // TODO: Iterative deepening
         Position currentPos = new Position(new Board(), new PieceValue());
@@ -250,7 +262,9 @@ public unsafe class OpponentMinmax : IOpponent
         GD.Print("Move: ", move.ToString());
         GD.Print("------\n");
 
-        ChessLogic.SubmitComputerMove(move);
+        shouldSubmit = true;
+        waitingMove = move;
+        
 
         EndPonder();
     }

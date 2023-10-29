@@ -28,255 +28,293 @@ ChessLogic - Static class which contains all methods you may need to call:
 // Simple representation of a move based on to and from squares
 public struct SimpleMove
 {
-	int fromCol;
-	int fromRow;
-	int toCol;
-	int toRow;
+    public int fromCol;
+    public int fromRow;
+    public int toCol;
+    public int toRow;
 
-	public SimpleMove(int fCol, int fRow, int tCol, int tRow)
-	{
-		fromCol = fCol;
-		fromRow = fRow;
-		toCol = tCol;
-		toRow = tRow;
-	}
+    public SimpleMove(int fCol, int fRow, int tCol, int tRow)
+    {
+        fromCol = fCol;
+        fromRow = fRow;
+        toCol = tCol;
+        toRow = tRow;
+    }
 }
 
 public struct GameState
 {
-	// Represents board as 8x8 array. Each square's piece or lack thereof is represented by a modified algebraic notation equivalent: uppercase denotes a white piece, while lowercase denotes a black one. A space character denotes an empty square.
-	/*
-	Example of starting position:
+    // Represents board as 8x8 array. Each square's piece or lack thereof is represented by a modified algebraic notation equivalent: uppercase denotes a white piece, while lowercase denotes a black one. A space character denotes an empty square.
+    /*
+    Example of starting position:
 
-	[
-		['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
-		['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
-		[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-		[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-		[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-		[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-		['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
-		['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
-	]
+    [
+        ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
+        ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+        ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R']
+    ]
 
-	*/
-	public char[,] board;
-	// Whether white can still castle in the position
-	public bool WhiteCastlingRights;
-	// Whether black can still castle
-	public bool BlackCastlingRights;
-	// The square where the player to move can perform an en passant *into*. 0-63, moving left to right. -1 for no such square.
-	public int EnPassantSquare;
-	// Whether white is in check
-	public bool WhiteChecked;
-	// Same for black
-	public bool BlackChecked;
-	// True if game is over in any way. If game is over and white is in check, black has won by checkmate. If black is in check, white has one. If neither is in check, game has ended in stalemate (draw)
-	public bool GameOver;
-	// True if white is to move; false if black is.
-	public bool WhiteToMove;
+    */
+    public char[,] board;
+    // Whether white can still castle in the position
+    public bool WhiteCastlingRights;
+    // Whether black can still castle
+    public bool BlackCastlingRights;
+    // The square where the player to move can perform an en passant *into*. 0-63, moving left to right. -1 for no such square.
+    public int EnPassantSquare;
+    // Whether white is in check
+    public bool WhiteChecked;
+    // Same for black
+    public bool BlackChecked;
+    // True if game is over in any way. If game is over and white is in check, black has won by checkmate. If black is in check, white has one. If neither is in check, game has ended in stalemate (draw)
+    public bool GameOver;
+    // True if white is to move; false if black is.
+    public bool WhiteToMove;
+    public bool HumanIsWhite;
 
-	public GameState()
-	{
-		board = new char[8, 8];
-		WhiteCastlingRights = true;
-		BlackCastlingRights = true;
-		EnPassantSquare = -1;
-		WhiteChecked = false;
-		BlackChecked = false;
-		GameOver = false;
-		WhiteToMove = true;
-	}
+    public GameState()
+    {
+        board = new char[8, 8];
+        WhiteCastlingRights = true;
+        BlackCastlingRights = true;
+        EnPassantSquare = -1;
+        WhiteChecked = false;
+        BlackChecked = false;
+        GameOver = false;
+        WhiteToMove = true;
+        HumanIsWhite = true;
+    }
 }
 
 public static class ChessLogic
 {
-	public delegate void AIMoveNotify();
-	public static event AIMoveNotify AIMoveFinished;
+    public delegate void AIMoveNotify(SimpleMove move);
+    public static event AIMoveNotify AIMoveFinished;
 
-	private static IPlayer human;
-	private static IPlayer AI;
+    private static IPlayer human;
+    private static IPlayer AI;
 
-	const char W_KING = 'K';
-	const char W_QUEEN = 'Q';
-	const char W_BISHOP = 'B';
-	const char W_KNIGHT = 'N';
-	const char W_ROOK = 'R';
-	const char W_PAWN = 'P';
+    private static bool humanIsWhite;
 
-	const char B_KING = 'k';
-	const char B_QUEEN = 'q';
-	const char B_BISHOP = 'b';
-	const char B_KNIGHT = 'n';
-	const char B_ROOK = 'r';
-	const char B_PAWN = 'p';
-	const char SQUARE_EMPTY = ' ';
+    const char W_KING = 'K';
+    const char W_QUEEN = 'Q';
+    const char W_BISHOP = 'B';
+    const char W_KNIGHT = 'N';
+    const char W_ROOK = 'R';
+    const char W_PAWN = 'P';
 
-	private static GameState readableState;
+    const char B_KING = 'k';
+    const char B_QUEEN = 'q';
+    const char B_BISHOP = 'b';
+    const char B_KNIGHT = 'n';
+    const char B_ROOK = 'r';
+    const char B_PAWN = 'p';
+    const char SQUARE_EMPTY = ' ';
 
-	private static Game game;
+    private static GameState readableState;
 
-	public static void NewGame(bool humanIsWhite)
-	{
-		if (AIMoveFinished == null)
-		{
-			throw new Exception("ERROR: You must subscribe a function to AIMoveNotify event before starting a new game.");
-		}
-		else
-		{
-			readableState = new GameState();
-			game = (Game)GameFactory.Create("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");        
-		}
+    private static Game game;
 
-		human = new HumanPlayer(humanIsWhite);
-		AI = new OpponentMinmax(!humanIsWhite);
-	}
+    public static void NewGame(bool humanIsWhite)
+    {
+        if (AIMoveFinished == null)
+        {
+            throw new Exception("ERROR: You must subscribe a function to AIMoveNotify event before starting a new game.");
+        }
+        else
+        {
+            readableState = new GameState();
+            game = (Game)GameFactory.Create("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");        
+        }
 
-	public static void NewGame(bool humanIsWhite, String fen)
-	{
-		if (AIMoveFinished == null)
-		{
-			throw new Exception("ERROR: You must subscribe a function to AIMoveNotify event before starting a new game.");
-		}
-		else
-		{
-			readableState = new GameState();
-			game = (Game)GameFactory.Create(fen);        
-		}
+        human = new HumanPlayer(humanIsWhite);
+        AI = new OpponentMinmax(!humanIsWhite);
+        ChessLogic.humanIsWhite = humanIsWhite;
+    }
 
-		human = new HumanPlayer(humanIsWhite);
-		AI = new OpponentMinmax(!humanIsWhite);
-	}
+    public static void NewGame(bool humanIsWhite, String fen)
+    {
+        if (AIMoveFinished == null)
+        {
+            throw new Exception("ERROR: You must subscribe a function to AIMoveNotify event before starting a new game.");
+        }
+        else
+        {
+            readableState = new GameState();
+            game = (Game)GameFactory.Create(fen);        
+        }
 
-	// By default, the human plays white; this function inverts that.
-	public static void ReverseColors()
-	{
-		human.FlipCol();
-		AI.FlipCol();
-	}
+        human = new HumanPlayer(humanIsWhite);
+        AI = new OpponentMinmax(!humanIsWhite);
+    }
 
-	public static List<SimpleMove> GetLegalMoves()
-	{
-		List<SimpleMove> moves = new();
+    // By default, the human plays white; this function inverts that.
+    public static void ReverseColors()
+    {
+        human.FlipCol();
+        AI.FlipCol();
+    }
 
-		foreach (Move m in game.Pos.GenerateMoves())
-		{
-			Square fromSquare = m.FromSquare();
-			Square toSquare = m.ToSquare();
-			
-			moves.Add(new SimpleMove(fromSquare.File.AsInt(), fromSquare.Rank.AsInt(), toSquare.File.AsInt(), toSquare.Rank.AsInt()));
-		}
+    public static List<SimpleMove> GetLegalMoves()
+    {
+        List<SimpleMove> moves = new();
 
-		return moves;
-	}
+        foreach (Move m in game.Pos.GenerateMoves())
+        {
+            Square fromSquare = m.FromSquare();
+            Square toSquare = m.ToSquare();
+            
+            moves.Add(new SimpleMove(fromSquare.File.AsInt(), fromSquare.Rank.AsInt(), toSquare.File.AsInt(), toSquare.Rank.AsInt()));
+        }
 
-	/**
-	Returns a struct with all game information needed to visually represent the board in game.
-	*/
-	public static GameState GetBoardState()
-	{
-		return readableState;
-	}
+        return moves;
+    }
 
-	// Do not call this function.
-	public static Position GetPos()
-	{
-		return (Position)game.Pos;
-	}
+    /**
+    Returns a struct with all game information needed to visually represent the board in game.
+    */
+    public static GameState GetBoardState()
+    {
+        return readableState;
+    }
 
-	/*
-	 Call this function when the player has moved a piece in the game world to inform my code of it.
-	 Takes two ints for the square the piece moves from and two ints for the square the piece moves to (__Col -> x, __Row -> y).
-	 This will return false and do nothing if the move is illegal or if it is not the human player's turn.
-	 Zero-indexed.
-	*/
-	public static bool SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow)
-	{
-		if (!((HumanPlayer)human).CurrentTurn)
-		{
-			return false;
-		}
+    // Do not call this function.
+    public static Position GetPos()
+    {
+        return (Position)game.Pos;
+    }
 
-		Square from, to;
-		from = new Square(fromRow, fromCol);
-		to = new Square(toRow, toCol);
-		Move move = new Move(from, to);
+    /*
+     Call this function when the player has moved a piece in the game world to inform my code of it.
+     Takes two ints for the square the piece moves from and two ints for the square the piece moves to (__Col -> x, __Row -> y).
+     This will return false and do nothing if the move is illegal or if it is not the human player's turn.
+     Zero-indexed.
+    */
+    public static bool SubmitHumanMove(int fromCol, int fromRow, int toCol, int toRow)
+    {
+        if (!((HumanPlayer)human).CurrentTurn)
+        {
+            return false;
+        }
 
-		MoveList legalMoves = game.Pos.GenerateMoves();
+        Square from, to;
+        from = new Square(fromRow, fromCol);
+        to = new Square(toRow, toCol);
+        Move move = new Move(from, to);
 
-
-		foreach (Move testMove in legalMoves)
-		{
-			if (testMove.Equals(move))
-			{
-				MakeMove(move);
-				((IOpponent)AI).BeginPonder();
-				return true;
-			}
-		}        
+        MoveList legalMoves = game.Pos.GenerateMoves();
 
 
-		return false;
-	}
+        foreach (Move testMove in legalMoves)
+        {
+            if (testMove.Equals(move) || compareMoveSquaresByStrings(testMove, move))
+            {
+                MakeMove(testMove);
+                ((IOpponent)AI).BeginPonder();
+                ((HumanPlayer)human).BeginWait();
+                return true;
+            }
+            else
+            {
+                //GD.Print(move.FromSquare(), "; ", move.ToSquare());
+            }
+        }        
+        
 
-	// Do not attempt to call this function from gameplay code.
-	public static void SubmitComputerMove(Move move)
-	{
-		((HumanPlayer)human).BeginWait();
-		MakeMove(move);
-		AIMoveFinished?.Invoke();
-	}
+        return false;
+    }
 
-	private static char PieceToChar(Piece piece)
-	{
-		return piece.ToString()[0];
-	}
+    // Do not attempt to call this function from gameplay code.
+    public static void SubmitComputerMove(Move move)
+    {
+        ((HumanPlayer)human).EndWait();
+        MakeMove(move);
+        AIMoveFinished?.Invoke(new SimpleMove(move.FromSquare().File.AsInt(), move.FromSquare().Rank.AsInt(),
+             move.ToSquare().File.AsInt(), move.ToSquare().Rank.AsInt()));
 
-	private static void UpdateReadableState()
-	{
-		GameState state = new GameState();
+        //PrintMovesDebug();
+    }
 
-		
-		for (int y = 0; y < 8; y++)
-		{
-			String line = "";
-			for (int x = 0; x < 8; x++)
-			{
-				Square sq = new Square(y, x);
-				state.board[y,x] = PieceToChar(game.Pos.GetPiece(sq));
-				line += state.board[y,x];
-			}
-			GD.Print(line);
-		}
+    private static bool compareMoveSquaresByStrings(Move m1, Move m2)
+    {
+        return
+            m1.FromSquare().ToString().Equals(m2.FromSquare().ToString()) &&
+            m1.ToSquare().ToString().Equals(m2.ToSquare().ToString())
+        ;
+    }
 
-		state.WhiteCastlingRights = game.Pos.CanCastle(CastleRights.White);
-		state.BlackCastlingRights = game.Pos.CanCastle(CastleRights.Black);
+    private static void PrintMovesDebug()
+    {
+        GD.Print();
+        foreach (Move m in game.Pos.GenerateMoves())
+        {
+            GD.Print(m);
+            if (m.ToString().Equals("O-O"))
+            {
+                GD.Print("Castling: ", m.FromSquare(),  "; ", m.ToSquare());
+            }
+        }
+        GD.Print();
+    }
 
-		GD.Print("Can white castle? " + state.WhiteCastlingRights);
-		GD.Print("Can black castle? " + state.BlackCastlingRights);
+    private static char PieceToChar(Piece piece)
+    {
+        return piece.ToString()[0];
+    }
 
-		state.EnPassantSquare = game.Pos.EnPassantSquare.AsInt();
-		if (game.Pos.InCheck)
-		{
-			if (game.Pos.SideToMove == Player.White)
-			{
-				state.WhiteChecked = true;
-				state.BlackChecked = false;
-			}
-			else
-			{
-				state.WhiteChecked = false;
-				state.BlackChecked = true;
-			}
-		}
+    private static void UpdateReadableState()
+    {
+        GameState state = new GameState();
 
-		state.GameOver = game.Pos.GenerateMoves().Length > 0;
-		state.WhiteToMove = (game.Pos.SideToMove == Player.White);
-	}
+        
+        for (int y = 0; y < 8; y++)
+        {
+            String line = "";
+            for (int x = 0; x < 8; x++)
+            {
+                Square sq = new Square(y, x);
+                state.board[y,x] = PieceToChar(game.Pos.GetPiece(sq));
+                line += state.board[y,x];
+            }
+            GD.Print(line);
+        }
 
-	private static void MakeMove(Move move)
-	{
-		game.Pos.MakeMove(move, game.Pos.State);
-		UpdateReadableState();
-	}
+        state.WhiteCastlingRights = game.Pos.CanCastle(CastleRights.White);
+        state.BlackCastlingRights = game.Pos.CanCastle(CastleRights.Black);
+
+        GD.Print("Can white castle? " + state.WhiteCastlingRights);
+        GD.Print("Can black castle? " + state.BlackCastlingRights);
+
+        state.EnPassantSquare = game.Pos.EnPassantSquare.AsInt();
+        if (game.Pos.InCheck)
+        {
+            if (game.Pos.SideToMove == Player.White)
+            {
+                state.WhiteChecked = true;
+                state.BlackChecked = false;
+            }
+            else
+            {
+                state.WhiteChecked = false;
+                state.BlackChecked = true;
+            }
+        }
+
+        state.GameOver = game.Pos.GenerateMoves().Length > 0;
+        state.WhiteToMove = (game.Pos.SideToMove == Player.White);
+        state.HumanIsWhite = humanIsWhite;
+
+        readableState = state;
+    }
+
+    private static void MakeMove(Move move)
+    {
+        game.Pos.MakeMove(move, game.Pos.State);
+        UpdateReadableState();
+    }
 }
