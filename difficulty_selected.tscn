@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgavmgtl82fcj"]
 
-[ext_resource type="AudioStream" uid="uid://cbbdvr52hmtpk" path="res://Menu-001.mp3" id="1_bqs5t"]
+[ext_resource type="AudioStream" uid="uid://dc5uv66emlbxb" path="res://Assets/Audio Assets/Menu-007.mp3" id="1_mcbq8"]
 
 [node name="DifficultySelected" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_bqs5t")
+stream = ExtResource("1_mcbq8")

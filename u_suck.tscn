@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://chl753we8xx5h"]
+
+[node name="Label" type="Label"]
+offset_right = 397.0
+offset_bottom = 206.0
+text = "u suck lmao"
+horizontal_alignment = 1
+vertical_alignment = 1

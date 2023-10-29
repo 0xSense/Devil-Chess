@@ -33,7 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bgru1ag6fowye" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0014.png" id="32_4v0d0"]
 [ext_resource type="Script" path="res://AnimationHandler.gd" id="33_g6fjv"]
 [ext_resource type="Texture2D" uid="uid://c6w7c5e0jwdeh" path="res://Assets/Animations/Frames/devil-art-FIN (1)_page_0015.png" id="33_lclod"]
-[ext_resource type="AudioStream" uid="uid://docny78mhofy" path="res://Assets/Audio Assets/In_Game.mp3" id="34_kbxu1"]
+[ext_resource type="AudioStream" uid="uid://bxgh45ul1a5y5" path="res://Assets/Audio Assets/In Game.wav" id="34_7kanw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w4hio"]
 sky_top_color = Color(0.392157, 0.403922, 0.756863, 1)
@@ -623,7 +623,7 @@ alpha_cut = 1
 sprite_frames = SubResource("SpriteFrames_idnvd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("34_kbxu1")
+stream = ExtResource("34_7kanw")
 volume_db = -8.0
 autoplay = true
 

@@ -1,16 +1,15 @@
 [gd_scene load_steps=18 format=3 uid="uid://bseenullji7qk"]
 
-
 [ext_resource type="Script" path="res://main_menu.gd" id="1_8t10k"]
 [ext_resource type="Texture2D" uid="uid://0xa4dil15t2d" path="res://Assets/Main Menu Assets/Play button.png" id="3_an50a"]
 [ext_resource type="Texture2D" uid="uid://drttlsi5etirl" path="res://Assets/Main Menu Assets/Ai Difficulty solo.png" id="3_rmuf3"]
 [ext_resource type="Texture2D" uid="uid://hstsojhcc0j6" path="res://Assets/Main Menu Assets/Blank button.png" id="3_sn4d1"]
 [ext_resource type="Texture2D" uid="uid://dnaagbrbim5qa" path="res://Assets/Main Menu Assets/Play Selected.png" id="4_yn4tf"]
 [ext_resource type="Texture2D" uid="uid://c0xwjoq28477k" path="res://Assets/Main Menu Assets/Music On Button.png" id="5_wnnrf"]
-[ext_resource type="Script" path="res://Play Button.gd" id="6_cmnhc"]
+[ext_resource type="Script" path="res://Play Button.gd" id="6_ox2w5"]
 [ext_resource type="Texture2D" uid="uid://on7t5c333h26" path="res://Assets/Main Menu Assets/Music Off Button.png" id="6_qg8ct"]
 [ext_resource type="AudioStream" uid="uid://c13fo66351v6w" path="res://Assets/Audio Assets/Menu.wav" id="7_q1nhd"]
-[ext_resource type="Script" path="res://Toggle Music.gd" id="9_i6mt6"]
+[ext_resource type="Script" path="res://Toggle Music.gd" id="9_1ddsj"]
 [ext_resource type="Texture2D" uid="uid://dr0rgn3ycq5e4" path="res://Assets/Main Menu Assets/Medium solo brown.png" id="10_xdh4m"]
 [ext_resource type="Texture2D" uid="uid://dru101auu1bwq" path="res://Assets/Main Menu Assets/Hard solo yellow.png" id="11_jgesf"]
 [ext_resource type="Texture2D" uid="uid://cc31vcyr3vmuu" path="res://Assets/Main Menu Assets/Devil's advocate solo.png" id="12_ixl8e"]
@@ -41,7 +40,7 @@ offset_bottom = 340.0
 scale = Vector2(0.798, 0.65)
 texture_normal = ExtResource("3_an50a")
 texture_pressed = ExtResource("4_yn4tf")
-script = ExtResource("6_cmnhc")
+script = ExtResource("6_ox2w5")
 
 [node name="Toggle Music" type="TextureButton" parent="."]
 offset_left = 468.0
@@ -52,11 +51,12 @@ scale = Vector2(0.8, 0.65)
 toggle_mode = true
 texture_normal = ExtResource("5_wnnrf")
 texture_pressed = ExtResource("6_qg8ct")
-script = ExtResource("9_i6mt6")
+script = ExtResource("9_1ddsj")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_q1nhd")
 autoplay = true
+bus = &"Music"
 
 [node name="OptionButton" type="OptionButton" parent="."]
 offset_left = 470.0
