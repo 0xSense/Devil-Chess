@@ -177,6 +177,8 @@ public partial class GameManager : Node
                 queuedSquare = NULL_SQUARE;
             }
         }
+        else
+            queuedSquare = algebraic;
     }
 
     public void OnAIMove(SimpleMove move)
