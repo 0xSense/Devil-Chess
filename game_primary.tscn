@@ -642,6 +642,7 @@ sprite_frames = SubResource("SpriteFrames_idnvd")
 stream = ExtResource("34_7kanw")
 volume_db = -8.0
 autoplay = true
+bus = &"Music"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

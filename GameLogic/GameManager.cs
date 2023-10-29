@@ -152,7 +152,7 @@ public partial class GameManager : Node
         //GD.Print(pawns[0]);
 
         ChessLogic.AIMoveFinished += OnAIMove;
-        ChessLogic.NewGame(true);
+        ChessLogic.NewGame(true, "Pnbqkbnr/prpppppp/p/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
         state = ChessLogic.GetBoardState();
     }
 
